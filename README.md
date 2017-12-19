@@ -22,11 +22,12 @@ MVC：JFinal 3.3
 
 （5）系统管理(角色、管理员、存储插件、地区、设置、模板、清除缓存、生成静态、生成sitemap)
 
-3.演示地址:http://www.kuaifankeji.com
+3.演示地址:[http://www.kuaifankeji.com](http://www.kuaifankeji.com)
 
 4.交流群:575535321
 
 5.部分功能截图:
+
 ![输入图片说明](https://gitee.com/uploads/images/2017/1219/151905_8fb1c310_623319.png "14439_20171218214553.png")
 ![输入图片说明](https://gitee.com/uploads/images/2017/1219/151920_ecb6e567_623319.png "14439_20171218212610.png")
 ![输入图片说明](https://gitee.com/uploads/images/2017/1219/151929_6e6d23c3_623319.png "14439_20171218212622.png")
