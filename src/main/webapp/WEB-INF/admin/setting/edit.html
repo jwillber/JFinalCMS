@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>编辑自定义设置</title>
+[#include "/WEB-INF/admin/include/common.html"]
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>编辑自定义设置</h5>
+            </div>
+           <form id="inputForm" action="update" method="post">
+                <input type="hidden" name="id" value="${setting.id}" />
+                <div class="ibox-content">
+                    <div class="form-horizontal clearfix">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">类型：</label>
+                            <div class="col-sm-3">
+                                <select class="form-control" name="type" id="type">
+                                    <option value="">--请选择设置类型--</option>
+                                    [#list configTypeNames.keySet() as key]
+                                        <option value="${key}" [#if setting.type==key]selected[/#if]>${configTypeNames.get(key)}</option>
+                                    [/#list]
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">标题：</label>
+                            <div class="col-sm-3">
+                                <input placeholder="标题" class="form-control" type="text" name="title" value="${setting.title}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">名称：</label>
+                            <div class="col-sm-3">
+                                <input placeholder="名称" class="form-control" type="text" name="name" value="${setting.name}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-horizontal clearfix" id="inputTable" [#if setting.type!='input']style="display: none;"[/#if]>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">值：</label>
+                            <div class="col-sm-3">
+                                <input type="text" name="inputValue" class="form-control" value="${setting.value}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-horizontal clearfix" id="textareaTable" [#if setting.type!='textarea']style="display: none;"[/#if]>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">值：</label>
+                            <div class="col-sm-3">
+                                <textarea name="textareaValue" class="form-control" style="height: 250px;">${setting.value}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-horizontal clearfix" id="editorTable" [#if setting.type!='editor']style="display: none;"[/#if]>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">值：</label>
+                            <div class="col-sm-8">
+                                <textarea name="editorValue" id="editorValue" class="ibox-content no-padding" style="height: 250px;">${setting.value}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-horizontal clearfix" id="fileTable" [#if setting.type!='file']style="display: none;"[/#if]>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">值：</label>
+                            <div class="col-sm-3">
+                                <input type="text" name="fileValue" value="${setting.value}" class="form-control"/>
+                            </div>
+                            <div class="col-sm-3">
+                                <a href="javascript:;" id="filePicker" class="btn btn-primary">选择文件</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer col-sm-3 col-sm-offset-2">
+                    <button type="submit" class="btn btn-w-m btn-primary">确定</button>
+                    <button type="button" class="btn btn-w-m btn-default" onclick="history.back(); return false;">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+$().ready(function() {
+
+    var $inputForm = $("#inputForm");
+    var $type = $("#type");
+    var $editorValue = $("#editorValue");
+    var $filePicker = $("#filePicker");
+    
+    $filePicker.uploader();
+    $editorValue.editor();
+    
+    // 字段类别
+    $type.change(function() {
+        var $this = $(this);
+        $("#inputTable").hide();
+        $("#textareaTable").hide();
+        $("#editorTable").hide();
+        $("#fileTable").hide();
+        $("#"+$this.val()+"Table").show();
+    });
+    
+    
+    // 表单验证
+    $inputForm.validate({
+        rules: {
+            name: "required",
+            value: "required",
+            title: "required",
+            type: "required"
+        }
+    });
+
+});
+</script>

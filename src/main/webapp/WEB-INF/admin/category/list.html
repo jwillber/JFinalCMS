@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>分类管理</title>
+[#include "/WEB-INF/admin/include/common.html"]
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>分类管理</h5>
+            </div>
+           	<form id="listForm" action="list" method="get">
+	            <div class="ibox-content">
+	                <!-- 列表 start -->
+	                <div class="form-horizontal clear">
+	                    <div class="form-group">
+	                        <div class="col-sm-8">
+	                            <a class="btn btn-primary" href="add"><i class="fa fa-plus"></i> 添加</a>
+	                            <a href="javascript:;" class="btn btn-primary" id="refreshButton"><i class="fa fa-refresh"></i> 刷新</a>
+	                        </div>
+	                    </div>
+	                    <div class="table-responsive">
+	                        <table class="table table-bordered" id="listTable">
+	                            <thead>
+	                                <tr>
+	                                	<th>ID</th>
+	                                    <th>名称</th>
+	                                    <th>类型</th>
+	                                    <th>目录</th>
+	                                    <th>排序</th>
+	                                    <th>是否做为菜单</th>
+	                                    <th>状态</th>
+	                                    <th>操作</th>
+	                                </tr>
+	                            </thead>
+	                            <tbody>
+	                            	<tr>
+	                            		<td>-</td>
+										<td><span style="color: #000000;">首页</span></td>
+										<td>-</td>
+										<td>/</td>
+										<td>1</td>
+										<td>是</td>
+										<td>已启用</td>
+									</tr>
+	                            	[#list categoryTree as category]
+	                                <tr>
+	                                	<td>${category.id}</td>
+										<td>
+											<span style="margin-left: ${category.grade * 20}px;[#if category.grade == 0] color: #000000;[/#if]">
+												${category.name}
+											</span>
+										</td>
+										<td>${categoryTypeNames.get(category.type)}</td>
+										<td>${category.directory}</td>
+										<td>${category.sort}</td>
+										<td>[#if category.isMenu==true]是[#else]否[/#if]</td>
+										<td>[#if category.isEnabled]已启用[#else]已禁用[/#if]</td>
+										<td>
+											<a href="edit?id=${category.id}">[编辑]</a>
+											<a href="javascript:;" class="delete" val="${category.id}">[删除]</a>
+										</td>
+									</tr>
+	                                [/#list]
+	                            </tbody>
+	                        </table>
+	                    </div>
+	                </div>
+	                <!-- 列表 end -->
+	            </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+$().ready(function() {
+
+	var $delete = $("#listTable a.delete");
+	
+	parent.refreshCategoryMenu();
+	
+	// 删除
+	$delete.click(function() {
+		var $this = $(this);
+		if(confirm("您确定要删除吗？")){
+			$.ajax({
+				url: "delete",
+				type: "POST",
+				data: {id: $this.attr("val")},
+				dataType: "json",
+				cache: false,
+				success: function(message) {
+					if (message.type == "success") {
+						$this.closest("tr").remove();
+					}
+				}
+			});
+		}
+		return false;
+	});
+
+});
+</script>

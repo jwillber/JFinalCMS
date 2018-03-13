@@ -1,0 +1,33 @@
+<!-- header-->
+<div class="header">
+	<a href="${base}/"><img src="${logo}" alt="${config.siteName}" /></a>
+	<div class="tel">电话：<span>${phone}</span></div>
+</div>
+
+<div class="nav-bg">
+	<ul id="nav" class="nav clearfix">
+		<li class="nLi on">
+			<h3><a href="${base}/">首页</a></h3>
+		</li>
+		[@category_root_list]
+			[#list categories as category]
+			<li class="nLi on">
+				<h3><a href="${category.path}" [#if category.type=="link"]target="_blank"[/#if]>${category.name}</a></h3>
+			</li>
+			[/#list]
+		[/@category_root_list]
+	</ul>
+	<script  type="text/javascript">
+	jQuery("#nav").slide({ type:"menu", titCell:".nLi", targetCell:".sub",effect:"slideDown",delayTime:300,triggerTime:0,returnDefault:true});
+	</script>
+</div>
+<div class="nav-bg-bottom clear"></div>
+<div class="banner">
+	<!-- banner start -->
+	[@ad_position id = 1 /]
+	<!-- banner end -->
+	<script id="jsID" type="text/javascript">
+	jQuery(".slideBox").slide({mainCell:".bd ul",effect:"leftLoop",autoPlay:true,delayTime:1000,interTime:4000});
+	</script>
+</div>
+<div class="blank20 clear"></div>

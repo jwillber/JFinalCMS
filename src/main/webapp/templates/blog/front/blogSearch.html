@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>文章</title>
+<link rel="stylesheet" id="style-css"  href="${base}/templates/${config.theme}/front/static/css/style.css" type="text/css" media="all" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+</head>
+<body class="archive category category-htmlcss category-61">
+	<!-- header start -->
+	[#include "/templates/${config.theme}/front/header.html" /]
+	<!-- header end -->
+	<section class="container">
+		<div class="content-wrap">
+			<div class="content">
+				<header class="archive-header"> 
+					<h1>${articleKeyword}</h1>
+					<div class="archive-header-info"><p></p></div>	
+				</header>
+				<div class="banner banner-sticky"><div style="text-align:left;padding:10px 20px;margin-bottom:-6px;"></div></div>
+				[#list page.content as article]
+					<article class="excerpt">
+						<div class="focus"><a href="${article.path}" class="thumbnail"><img src="${article.image}" alt="${article.title}" /></a></div>
+						<header>
+							<a class="label label-important" href="${article.articleCategory.path}">${article.articleCategory.name}<i class="label-arrow"></i></a>		
+							<h2><a href="${article.path}" title="${article.title}">${article.title}</a></h2>
+						</header>
+						<p>
+							<span class="muted"><i class="icon-user icon12"></i>${article.author}</span>
+							<span class="muted"><i class="icon-time icon12"></i>${article.createDate?string("MM-dd")}</span>
+							<span class="muted"><i class="icon-eye-open icon12"></i> 100浏览</span>
+	        				<span class="muted"><i class="icon-comment icon12"></i><a href="${article.path}#comments">1评论</a></span>
+	        			</p>
+						<p class="note">${abbreviate(article.content, 200, "...")}</p>
+					</article>
+				[/#list]
+				[@pagination pageNumber = page.pageNumber totalPages = page.totalPages pattern = "javascript: $.pageSkip({pageNumber});"]
+					[#include "/home/include/pagination.ftl"]
+				[/@pagination]
+			</div>
+		</div>
+		<aside class="sidebar">	
+			<div class="widget d_postlist">
+				<h3 class="widget_tit">推荐文章</h3>
+				<ul>
+      				[@article_list count=2 orderBy="hits desc"]
+						[#list articles as article]
+      						<li><a href="${article.path}"><span class="thumbnail"><img src="${article.image}" alt="${article.title}"></span><span class="text">${article.title}</span><span class="muted">${article.createDate?string("yyyy-MM-dd")}</span><span class="muted">1条评论</span></a></li>
+      					[/#list]
+					[/@article_list]   
+      			</ul>
+      		</div>
+			<div class="widget d_comment">
+				<h3 class="widget_tit">最新评论</h3>
+				<ul>
+					[@article_review_list count=10 orderBy="createDate desc"]
+						[#list articleReviews as articleReview]
+							<li><a href="${articleReview.article.path}" title="${articleReview.article.title}"><img alt="" src="" class="avatar avatar-36 photo" height="36" width="36" /><strong>${articleReview.name}：</strong>${articleReview.content}</a></li>
+						[/#list]
+					[/@article_review_list]
+				</ul>
+			</div>
+			<div class="widget d_postlist">
+				<h3 class="widget_tit">热门文章</h3>
+				<ul>
+     	 			[@article_list count=2 orderBy="hits desc"]
+						[#list articles as article]
+		     	 			<li><a href="${article.path}"><span class="thumbnail"><img src="${article.image}" alt="${article.title}" /></span><span class="text">${article.title}</span><span class="muted">${article.createDate?string("yyyy-MM-dd")}</span><span class="muted">202次阅读</span></a></li>
+						[/#list]
+					[/@article_list]   
+				</ul>
+			</div>
+		</aside>
+	</section>
+	<!-- footer start -->
+	[#include "/templates/${config.theme}/front/footer.html" /]
+	<!-- footer end -->
+</body>
+</html>

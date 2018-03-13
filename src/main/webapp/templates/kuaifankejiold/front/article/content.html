@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>${article.title}-${siteName}</title>
+    <meta name="keywords" content="快帆工作室,KuaiFanKeJi,互联网建站平台,网站建设,网站开发,微信公众号开发,微信小程序开发,微信APP开发,webapp开发">
+    <meta name="description" content="快帆工作室,KuaiFanKeJi,互联网建站平台,网站建设,网站开发,微信公众号开发,微信小程序开发,微信APP开发,webapp开发,省时省力省心,标准化制作流程,让您建站无忧">
+    <link rel="stylesheet" type="text/css" href="${base}/templates/${config.theme}/front/front/static/css/base.min.css">
+    <link rel="stylesheet" type="text/css" href="${base}/templates/${config.theme}/front/front/static/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="${base}/templates/${config.theme}/front/front/static/css/home.css">
+</head>
+<body>
+<!-- header start -->
+[#include "/templates/${config.theme}/front/front/include/header.html" /]
+<!-- header end -->
+<div class="inbox main layout-margin unstart">
+    <div class="inbox bread-nav"><span>当前位置：</span><a href="${base}/">${siteName}</a> > <a href="${article.articleCategory.url}">${article.articleCategory.name}</a> > </div>
+    <div class="fn-clear rmb-main-top" id="unMainTop"></div>
+    <div class="container">
+    <div class="content">
+        <div class="un-content-top" id="unContentTop"></div>
+        <div class="ver-line"></div>
+        <h1 class="ptit">${article.title}</h1>
+        <cite class="page-cite">
+            <span>来源：<a href="${base}/" target="_blank">${siteName}</a></span>
+            <span>作者： ${siteName}</span>
+            <span>日期：${article.createDate}</span>
+            <span>人气:<script src="${base}/article/hits/${article.id}" type='text/javascript' language="javascript"></script></span>
+        </cite>
+        <div class="intro" id="intro"><span id="introcon">${abbreviate(article.text,34,"...")}</span></div>
+        <div class="page-body">
+ 			${article.content}
+        </div>
+		<ul class="page-list page-list-article">
+			<!--分页占位符-->
+		</ul>
+        <div id="lrExceptional"><!--打赏占位符--></div>
+
+        <div class="context">
+            <p class="up">上一篇：[#if article.lastArticle??]<a href="${article.lastArticle.url}">${article.lastArticle.title}</a>[#else]没有了[/#if] </p>
+            <p class="next">下一篇：[#if article.nextArticle??]<a href="${article.nextArticle.url}">${article.nextArticle.title}</a>[#else]没有了[/#if] </p>
+        </div>
+        <!--//pagecontent-->
+    </div>
+</div>
+    <div class="sidebar-end">
+        <div class="sidebar-box ui-box01-">
+            <div class="tit tit01"><h3 class="h">${article.articleCategory.name}-热门文章</h3></div>
+            <div class="bd">
+                <ul class="bl-text-list text-list-02 text-list-mun">
+                	[@article_list orderBy="hits desc"]
+                		[#list articles as article]
+		                    <li>
+		                        <var class="num num-1">${article_index+1}</var>
+		                        <a href="${article.url}" title="${article.title}" class="ta">${article.title}</a>
+		                    </li>
+                		[/#list]
+                	[/@article_list]
+                </ul>
+            </div>
+        </div>
+        <div class="sidebar-box" id="unSidebar03"></div>
+        <div class="sidebar-box ui-box01-">
+            <div class="tit tit01"><h3 class="h">${article.articleCategory.name}-推荐文章</h3></div>
+            <div class="bd">
+                <ul class="bl-text-list text-list-02">
+                	[@article_list orderBy="createDate desc"]
+                		[#list articles as article]
+		                    <li><a href="${article.url}" title="${article.title}" class="ta">${article.title}</a></li>
+                		[/#list]
+                	[/@article_list]
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- footer start -->
+[#include "/templates/${config.theme}/front/front/include/footer.html" /]
+<!-- footer end -->
+</body>
+</html>

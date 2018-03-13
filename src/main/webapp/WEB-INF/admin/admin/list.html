@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>管理员管理</title>
+[#include "/WEB-INF/admin/include/common.html"]
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>管理员管理</h5>
+            </div>
+           	<form id="listForm" action="list" method="get">
+	            <div class="ibox-content">
+	                <!-- 搜索 start -->
+	                <div class="form-horizontal clear">
+	                    <div class="form-group">
+	                        <label class="col-sm-1 control-label">用户名：</label>
+	                        <div class="col-sm-2"><input class="form-control" type="text" name="username" value="${username}"></div>
+	                        <label class="col-sm-1 control-label">姓名：</label>
+	                        <div class="col-sm-2"><input class="form-control" type="text" name="name" value="${name}"></div>
+	                    </div>
+	                    <div class="text-center">
+                        	<input type="submit" class="btn btn-primary btn-w-m" value="查 询">
+                        	<input type="reset" class="btn btn-primary btn-w-m" value="重 置">
+                       	</div>
+	                </div>
+	                <!-- 搜索 end -->
+	                <!-- 列表 start -->
+	                <div class="form-horizontal clear">
+	                    <div class="form-group">
+	                        <div class="col-sm-8">
+	                            <a class="btn btn-primary" href="add"><i class="fa fa-plus"></i> 添加</a>
+	                            <a href="javascript:;" class="btn btn-warning disabled" id="deleteButton"><i class="fa fa-trash"></i> 删除</a>
+	                            <a href="javascript:;" class="btn btn-primary" id="refreshButton"><i class="fa fa-refresh"></i> 刷新</a>
+	                        </div>
+	                    </div>
+	                    <div class="table-responsive">
+	                        <table class="table table-bordered" id="listTable">
+	                            <thead>
+	                                <tr>
+	                                    <th width="40" class="text-center"><input type="checkbox" id="selectAll" /></th>
+	                                    <th>ID</th>
+	                                    <th>用户名</th>
+	                                    <th>姓名</th>
+	                                    <th>最后登录日期</th>
+	                                    <th>最后登录IP</th>
+	                                    <th>创建日期</th>
+	                                    <th>状态</th>
+	                                    <th>操作</th>
+	                                </tr>
+	                            </thead>
+	                            <tbody>
+	                            	[#list page.list as admin]
+	                                <tr>
+	                                    <td class="text-center"><input type="checkbox" name="ids" value="${admin.id}" /></td>
+	                                    <td>${admin.id}</td>
+	                                    <td>${admin.username}</td>
+	                                    <td>${admin.name}</td>
+	                                    <td>
+	                                    	[#if admin.loginDate??]
+												${admin.loginDate}
+											[#else]
+												-
+											[/#if]
+	                                    </td>
+	                                    <td>${admin.loginIp}</td>
+	                                    <td>${admin.createDate}</td>
+	                                    <td>[#if admin.isEnabled]已启用[#else]已禁用[/#if]</td>
+	                                    <td>
+	                                        <a href="edit?id=${admin.id}">[编辑]</a>
+	                                    </td>
+	                                </tr>
+	                                [/#list]
+	                            </tbody>
+	                        </table>
+	                    </div>
+	                    <div class="text-center">
+                            [@pagination pageNumber = page.pageNumber totalPages = page.totalPage]
+								[#include "/WEB-INF/admin/include/pagination.html"]
+							[/@pagination]
+	                    </div>
+	                </div>
+	                <!-- 列表 end -->
+	            </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

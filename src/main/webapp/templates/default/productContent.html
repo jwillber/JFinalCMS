@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>商品内容页</title>
+<link rel="stylesheet" type="text/css" href="${base}/templates/${config.theme}/front/static/css/css.css">
+<script src="${base}/templates/${config.theme}/front/static/js/jquery.min.js"></script>
+<script src="${base}/templates/${config.theme}/front/static/js/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<body>
+<!-- header start -->
+[#include "/templates/${config.theme}/front/header.html" /]
+<!-- header end -->
+<div class="mainbody">
+	<div class="w210 fl">
+			<div class="sidenav bg">
+				<div class="title"><s></s>产品分类</div>
+			    <div class="leftbox">
+					<ul>
+						[@category_children_list categoryId=content.category.id]
+							[#list categories as category]
+			                 	<li><s></s><a class="select" href="${category.path}">${category.name}</a></li>
+			                 [/#list]
+						[/@category_children_list]
+					</ul> 
+			   	</div>
+			</div>
+			<div class="blank10 clear"></div>
+			<div class="contact bg">
+ <div class="newstitle"><h3>联系我们</h3></div> 
+[@ad_position id = 9 /]
+</div>
+	</div>
+	<div class="w740 fr">
+		<div class="page bg">
+         	<div class="newstitle">您当前位置：<a  href="${base}/">首页</a> >> ${content.title}</div>
+            <div class="blank10 clear"></div>	
+            <h2>${content.title}</h2> 
+            <div class="info">时间：${content.createDate} 点击：${content.hits}次</div>
+            <div class="content">${content.introduction}</div>
+            <div class="blank10 clear"></div>	
+		</div>
+	</div>
+</div>
+<!-- footer start -->
+[#include "/templates/${config.theme}/front/footer.html" /]
+<!-- footer end -->
+</body>
+</html>

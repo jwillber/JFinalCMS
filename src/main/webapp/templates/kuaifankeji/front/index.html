@@ -1,0 +1,248 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="${config.description}">
+  <meta name="keywords" content="${config.keywords}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${config.siteName}-${config.title}</title>
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <link rel="icon" type="image/png" href="${config.siteUrl}/favicon.ico">
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="${config.siteUrl}/favicon.ico">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <link rel="apple-touch-icon-precomposed" href="${config.siteUrl}/favicon.ico">
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="${config.siteUrl}/favicon.ico">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+  <link rel="stylesheet" href="${base}/templates/${config.theme}/front/static/css/amazeui.min.css">
+  <link rel="stylesheet" href="${base}/templates/${config.theme}/front/static/css/style.css">
+  <!--[if (gte IE 9)|!(IE)]><!-->
+  <script src="${base}/templates/${config.theme}/front/static/js/jquery.min.js"></script>
+  <!--<![endif]-->
+  <script src="${base}/templates/${config.theme}/front/static/js/jquery.SuperSlide.2.1.2.js"></script>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，${config.siteName} 暂不支持。 请使用Chrome谷歌浏览器访问本站或至 <a
+  href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+<!--主体开始-->
+<!--头部开始-->
+[#include "/templates/${config.theme}/front/header.html" /]
+<!--头部结束-->
+<!--轮播开始-->
+ <div class="jumbotron">
+ 	<div class="overlay">
+ 		<div class="hero-section am-text-center">
+	 		<h1>为您提供最经济快速建站方案！</h1>
+	 		<p>以用户体验为中心，提供专业的网站建设、设计及开发服务<br> we are more concerned about how it can create value for you</p>
+	        <div class="btn-box">
+	            <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=f48c49cc36c4a55fb75539002a4ea0bfae8657f33a749870afaa5eb05537177f" class="am-btn am-btn-primary am-radius am-btn-lg">现在就获取报价</a>
+	        </div>	
+      	</div>
+    </div>
+</div>
+<!--轮播结束-->
+<!--案例开始-->
+<section class="case am-text-center">
+	<h1>我们积累了各行业丰富的案例和经验</h1>
+	<span>
+		<a href="${base}/goods/list/1">全部</a>
+		[@category_children_list categoryId=1]
+			[#list categories as category]
+				/<a href="${category.path}">${category.name}</a>
+			[/#list]
+		[/@category_children_list]
+	</span>
+	<div class="am-container">
+	  	<ul class="am-avg-sm-2 am-avg-md-3 am-thumbnails">
+	  		[@content_list categoryId=1 count=6]
+	  			[#list contents as content]
+				  	<li class="mt40">
+				  		<a href="${content.path}" title="${content.title}"><img class="w100" src="${content.image}" /></a>
+				  		<h3><a href="${content.path}" title="${content.title}">${content.title}</a></h3>
+				  	</li>
+		  		[/#list]
+		  	[/@content_list]
+	  	</ul>
+	</div>
+ </section>
+<!--案例结束-->
+<!--服务开始-->
+ <section class="server am-text-center">
+ 	<h1>我们的服务范围</h1>
+ 	<p class="lead">无论你有任何关于网站建设的需求，我们都能满足你。</p>
+	<div class="am-container">
+	  <ul class="am-avg-sm-1 am-avg-md-4">
+		  <li class="am-padding-horizontal mt40"  data-am-scrollspy="{animation:'slide-left',delay: 300,repeat: false}">
+		  	<a href="javascript:;" class="am-icon-btn am-primary am-icon-home"></a>
+		  	<h3><a href="javascript:;">网站建设</a></h3>
+		  	<p class="am-text-left">我们拥有八年专业经验，专注于网站建设开发，以用户体验为中心，提供全面的网站建设服务。</p>
+		  </li>
+		  <li class="am-padding-horizontal mt40" data-am-scrollspy="{animation:'slide-left',delay: 900,repeat: false}">
+		  	<a href="javascript:;" class="am-icon-btn am-success am-icon-copy"></a>
+		  	<h3><a href="javascript:;">快速仿站</a></h3>
+		  	<p class="am-text-left">利用对网上某个你非常喜欢的网站风格仿制以及功能仿制，这就是仿站。仿站是一个快速并且省钱的计划。</p>
+		  </li>
+		  <li class="am-padding-horizontal mt40" data-am-scrollspy="{animation:'slide-right',delay: 1200, repeat: false}">
+		  	<a href="javascript:;" class="am-icon-btn am-warning am-icon-weixin"></a>
+		  	<h3><a href="javascript:;">微信公众号</a></h3>
+		  	<p class="am-text-left">为企业、组织定制功能更齐全、更强大的公众号服务平台，一次开发，永久提升企业和组织的业务能力和用户管理能力，同时让营销变得更简单。</p>
+		  </li>
+		  <li class="am-padding-horizontal mt40" data-am-scrollspy="{animation:'slide-right',delay: 1500,repeat: false}">
+		  	<a href="javascript:;" class="am-icon-btn am-danger am-icon-mobile-phone"></a>
+		  	<h3><a href="javascript:;">webapp</a></h3>
+		  	<p class="am-text-left">我们根据您的需求，量身定制，让您的想法可落地执行。</p>
+		  </li>
+		</ul>
+	</div>
+ </section>
+ <!--服务结束-->
+ <!--理念开始-->
+<section class="ls1 am-text-center">
+	<h1>我们的理念</h1>
+ 	<p class="lead">我们期待与您的携手，以设计驱动企业价值增长，实现您的商业目标</p>
+	<div class="am-container">
+	  <ul class="am-avg-sm-1 am-avg-md-2">
+		  <li class="am-padding-horizontal mt40"  data-am-scrollspy="{animation:'slide-bottom',delay: 300,repeat: false}">
+		  	<img src="${base}/templates/${config.theme}/front/static/images/dian_03.png"/>
+		  </li>
+		  <li class="am-padding-horizontal am-padding-right mt40" data-am-scrollspy="{animation:'scale-up',delay: 600,repeat: false}">
+		  	<p class="am-text-left">我们致力于用户体验的持续提升，以用户为中心，力求视觉设计与交互设计的完美契合。并且我们以科学规范的流程，勤奋专注的态度，为客户提供全方位的网站建设服务。力求让您以最低的时间和金钱成本，获得更好的效果，实现您的商业目标！</p>
+		  	<p class="am-text-left">我们只做一件事 :<strong>持续为客户创造价值！</strong></p>
+		  </li>
+		</ul>
+	</div>
+</section>
+<!--理念结束-->
+ <!--流程开始-->
+<section class="process am-text-center">
+	<h1>我们的服务流程</h1>
+ 	<p class="lead">标准化建站流程，更加快速，更加高效</p>
+	<div class="am-container">
+	  <ul class="am-avg-sm-1 am-avg-md-8">
+	  		 <li class="am-padding-horizontal mt40"  data-am-scrollspy="{animation:'slide-left',delay: 300,repeat: false}">
+			  	<a href="javascript:;" class="am-icon-btn am-primary am-icon-file-o"></a>
+			  	<h3><a href="javascript:;">需求调研</a></h3>
+			  </li>
+			  <li class="am-padding-horizontal mt40"  data-am-scrollspy="{animation:'slide-left',delay: 300,repeat: false}">
+			  	<a href="javascript:;" class="am-icon-btn am-primary am-icon-file-text"></a>
+			  	<h3><a href="javascript:;">页面设计</a></h3>
+			  </li>
+			   <li class="am-padding-horizontal mt40"  data-am-scrollspy="{animation:'slide-left',delay: 300,repeat: false}">
+			  	<a href="javascript:;" class="am-icon-btn am-primary am-icon-html5"></a>
+			  	<h3><a href="javascript:;">前端开发</a></h3>
+			  </li>
+			   <li class="am-padding-horizontal mt40"  data-am-scrollspy="{animation:'slide-left',delay: 300,repeat: false}">
+			  	<a href="javascript:;" class="am-icon-btn am-primary am-icon-windows"></a>
+			  	<h3><a href="javascript:;">程序开发</a></h3>
+			  </li>
+			    <li class="am-padding-horizontal mt40"  data-am-scrollspy="{animation:'slide-left',delay: 300,repeat: false}">
+			  	<a href="javascript:;" class="am-icon-btn am-primary am-icon-edit"></a>
+			  	<h3><a href="javascript:;">内容编辑</a></h3>
+			  </li>
+			   <li class="am-padding-horizontal mt40"  data-am-scrollspy="{animation:'slide-left',delay: 300,repeat: false}">
+			  	<a href="javascript:;" class="am-icon-btn am-primary am-icon-desktop"></a>
+			  	<h3><a href="javascript:;">网站测试</a></h3>
+			  </li>
+			   <li class="am-padding-horizontal mt40"  data-am-scrollspy="{animation:'slide-left',delay: 300,repeat: false}">
+			  	<a href="javascript:;" class="am-icon-btn am-primary am-icon-server"></a>
+			  	<h3><a href="javascript:;">正式上线</a></h3>
+			  </li>
+			   <li class="am-padding-horizontal mt40"  data-am-scrollspy="{animation:'slide-left',delay: 300,repeat: false}">
+			  	<a href="javascript:;" class="am-icon-btn am-primary am-icon-user-plus"></a>
+			  	<h3><a href="javascript:;">后期维护</a></h3>
+			  </li>
+	  </ul>
+	</div>
+</section>
+<!--流程结束-->
+ <!--用户评价开始-->
+ <section class="comments">
+ 	<div class="am-g am-g-fixed slideTxtBox">
+  <div class="am-u-sm-12 am-u-md-8 bd">
+  	<ul class="users">
+  		<li>
+  	<div class="am-g">
+  		<div class="am-u-sm-12 am-u-md-3 am-u-sm-offset-1 am-text-center">
+  			<div class="userspic"><img class="am-img-responsive" src="${base}/templates/${config.theme}/front/static/images/tx3.jpg"/></div>
+  			<h5>Frozen</h5>
+  		</div>
+  		<div class="am-u-sm-12 am-u-md-8">
+  			<p>身份：草根创业者、个人站长、电商从业人员</p>
+  			<blockquote>
+  <p>“${config.siteName}专业的技术、快速的开发速度和完善的售后服务给我们提供了很大的帮助，请相信我，选择${config.siteName}不会错！”</p>
+</blockquote>
+  		</div>
+  	</div>
+  	</li>
+  	</ul>
+  	<ul class="users">
+  		<li>
+  	<div class="am-g">
+  		<div class="am-u-sm-12 am-u-md-3 am-u-sm-offset-1 am-text-center">
+  			<div class="userspic"><img class="am-img-responsive" src="${base}/templates/${config.theme}/front/static/images/tx2.jpg"/></div>
+  			<h5>阿伟</h5>
+  		</div>
+  		<div class="am-u-sm-12 am-u-md-8">
+  			<p>身份：苏格时光电影工作室创始人</p>
+  			<blockquote>
+  <p>“感谢${config.siteName}的精心制作，让我的网站在众多竞争对手中脱颖而出，网站上线后顾客成交订单明显增多了！”</p>
+</blockquote>
+  		</div>
+  	</div>
+  	</li>
+  	</ul>
+  	<ul class="users">
+  		<li>
+  	<div class="am-g">
+  		<div class="am-u-sm-12 am-u-md-3 am-u-sm-offset-1 am-text-center">
+  			<div class="userspic"><img class="am-img-responsive" src="${base}/templates/${config.theme}/front/static/images/tx1.jpg"/></div>
+  			<h5>小静</h5>
+  		</div>
+  		<div class="am-u-sm-12 am-u-md-8">
+  			<p>身份：总裁俱乐部负责人、个人站长</p>
+  			<blockquote>
+  <p>“我们网站主要用户是面向企业CEO和高管人群，对网站形象要求很看重，以前的网站很平庸，这次改版后明显高大上了起来，很喜欢现在的风格！”</p>
+</blockquote>
+  		</div>
+  	</div>
+  	</li>
+  	</ul>
+  </div>
+  <div class="am-u-sm-12 am-u-md-4 comment-list hd">
+  	<h3>来自用户的评价</h3>
+  	<ul>
+  		<li><i class="am-icon-plus am-icon-fw"></i> ${config.siteName}帮助我成就了梦</li>
+  		<li><i class="am-icon-plus am-icon-fw"></i> 这是我见过的最负责的一家</li>
+  		<li><i class="am-icon-plus am-icon-fw"></i> 我们与合作伙伴共同成长</li>
+  	</ul>
+  </div>
+</div>
+<script type="text/javascript">jQuery(".slideTxtBox").slide({effect:"fold",autoPlay:true,trigger:"click",easing:"easeInQuint"});</script>
+ </section>
+<!--用户评价结束-->
+<!--联系我们开始-->
+[#include "/templates/${config.theme}/front/contactus.html" /]
+<!--联系我们结束-->
+<!--底部开始-->
+[#include "/templates/${config.theme}/front/footer.html" /]
+<!--底部结束-->
+<!--End HE -->
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="${base}/templates/${config.theme}/front/static/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="${base}/templates/${config.theme}/front/static/js/amazeui.min.js"></script>
+<!-- 主体End -->
+</body>
+</html>

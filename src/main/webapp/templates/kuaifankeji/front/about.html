@@ -1,0 +1,124 @@
+
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="${config.description}">
+  <meta name="keywords" content="${config.keywords}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>关于我们-${config.siteName}</title>
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <link rel="icon" type="image/png" href="${config.siteUrl}/favicon.ico">
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="${config.siteUrl}/favicon.ico">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <link rel="apple-touch-icon-precomposed" href="${config.siteUrl}/favicon.ico">
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="${config.siteUrl}/favicon.ico">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+  <link rel="stylesheet" href="${base}/templates/${config.theme}/front/static/css/amazeui.min.css">
+  <link rel="stylesheet" href="${base}/templates/${config.theme}/front/static/css/style.css">
+  <!--[if (gte IE 9)|!(IE)]><!-->
+  <script src="${base}/templates/${config.theme}/front/static/js/jquery.min.js"></script>
+  <script src="${base}/templates/${config.theme}/front/static/js/jquery.sliphover.min.js"></script>
+  <!--<![endif]-->
+  <script src="${base}/templates/${config.theme}/front/static/js/jquery.SuperSlide.2.1.2.js"></script>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，${config.siteName} 暂不支持。 请使用Chrome谷歌浏览器访问本站或至 <a
+  href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+<!--主体-->
+<!--头部开始-->
+[#include "/templates/${config.theme}/front/header.html" /]
+<!--头部结束-->
+<!--轮播开始-->
+[#include "/templates/${config.theme}/front/banner.html" /]
+ <!--轮播结束-->
+ <div class="nav-bg" data-am-scrollspy-nav="{offsetTop: 45}" data-am-sticky>
+ 	<div class="am-container">
+ 		<nav>
+		  <ul>
+		    <li><a href="#about1">关于我们</a></li>
+		    <li><a href="#about2">服务优势</a></li>
+		    <li><a href="#about3">联系我们</a></li>
+		    <li><a href="#about4">相关文档</a></li>
+		  </ul>
+		</nav>
+ 	</div>
+ </div>
+ <section id="about1" class="about-main">
+ 	<h1 class="am-text-center">关于${config.siteName}</h1>
+ 	<div class="am-g">
+  <div class="am-u-sm-9 am-u-sm-centered">
+ 		<p>${config.siteName}是从事网站制作的网站建设工作室，拥有八年经验，我们专注于网站建设开发，以用户体验为中心，提供专业的网站模板制作、专业仿站服务、微信公众号开发、webapp开发等服务。我们致力于用户体验的持续提升，以用户为中心，力求视觉设计与交互设计的完美契合。并且我们以科学规范的流程，勤奋专注的态度，为客户提供全方位的网站建设服务。力求让您以最低的时间和金钱成本，获得更好的效果，实现您的商业目标！</p>
+  </div>
+</div>
+ </section>
+ 
+ <section id="about2" class="about-main">
+ 	<div class="am-text-center"><h1>服务优势</h1><span>创意、流程、执行缺一不可</span></div>
+ 	<div class="am-g am-g-fixed project_con">
+  <div class="am-u-sm-4">
+  	<img class="am-img-responsive" src="${base}/templates/${config.theme}/front/static/images/xiangmu_03.jpg"/>
+  	<p>从创始至今，我们的业务方向始终不变，专注做好一件事才能更好的追求高品质，这也是${config.siteName}存在的价值。在未来我们也是基于此信念而继续创造。</p>
+  </div>
+  <div class="am-u-sm-4">
+  	<img class="am-img-responsive" src="${base}/templates/${config.theme}/front/static/images/xiangmu_05.jpg"/>
+  	<p>在不断的创新和实践中总结出可持续和可信赖的设计流程，坚持与用户一起思考，用设计的方法发现问题、解决问题、输出设计方案，并实现客户产品和企业价值的提升。</p>
+  </div>
+  <div class="am-u-sm-4">
+  	<img class="am-img-responsive" src="${base}/templates/${config.theme}/front/static/images/xiangmu_07.jpg"/>
+  	<p>${config.siteName}8年来积累了大量优秀的项目案例，并验证了设计的价值。在不断的探索中总结经验，以结果为导向，继续为更多客户提供优秀的设计。</p>
+  </div>
+</div>
+ </section>
+ 
+ <section id="about3" class="about-main">
+ 	<div class="am-text-center"><h1>联系我们</h1><span>您可以通过如下方式与我们联系，QQ在线即回，邮件24小时内回复，电话接待时间：早上9:00-下午17:00</span></div>
+ 	<div class="am-g project_con">
+  <div class="am-u-sm-9 am-u-sm-centered">
+  	<ul>
+  		<li><i class="am-icon-btn am-secondary am-icon-qq"></i> <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=f48c49cc36c4a55fb75539002a4ea0bfae8657f33a749870afaa5eb05537177f">QQ群:${qq}</a></li>
+  		<li><i class="am-icon-btn am-secondary am-icon-envelope"></i> <a href="mailto:${email}">${email}</a></li>
+  		<li><i class="am-icon-btn am-secondary am-icon-phone"></i> <a href="javascript:;">${phone}</a></li>
+  	</ul>
+  </div>
+</div>
+ </section>
+ 
+ <section id="about4" class="about-main">
+ 	<h1 class="am-text-center">相关文档下载</h1>
+ 	<div class="am-g">
+  <div class="am-u-sm-9 am-u-sm-centered">
+ 		<p>我们在业界拥有良好声誉，作为私人化建站工作室，虽无正式合同，但我们完全和绝对遵从以下文档中所约定的协议，为避免交易纠纷，建议您事先下载查看。注：协议如有修改，不影响协议修改之前所达成的交易。</p>
+ 		<ul class="am-text-center wd-down">
+ 			<li><i class="am-icon-file-word-o"></i> <a href="">${config.siteName}网站建设协议</a><small>修改时间：2016-06-08 13:30</small></li>
+ 		</ul>
+  </div>
+</div>
+ </section>
+  <!--联系我们开始-->
+[#include "/templates/${config.theme}/front/contactus.html" /]
+   <!--联系我们结束-->
+<!--底部开始-->
+[#include "/templates/${config.theme}/front/footer.html" /]
+<!--底部结束-->
+<!--End HE -->
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="${base}/templates/${config.theme}/front/static/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="${base}/templates/${config.theme}/front/static/js/amazeui.min.js"></script>
+<!-- 主体End -->
+</body>
+</html>

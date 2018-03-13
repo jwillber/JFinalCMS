@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>添加广告</title>
+[#include "/WEB-INF/admin/include/common.html"]
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>添加广告</h5>
+            </div>
+           <form id="inputForm" action="save" method="post">
+	            <div class="ibox-content">
+	                <div class="form-horizontal clearfix">
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">标题：</label>
+	                        <div class="col-sm-3">
+	                            <input placeholder="标题" class="form-control" type="text" name="title">
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">类型：</label>
+	                        <div class="col-sm-3">
+	                           <select class="form-control" id="type" name="type">
+	                                [#list adTypeNames.keyList() as key]
+									 	<option value="${key}">${adTypeNames.get(key)}</option>
+									[/#list]
+	                            </select>
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">广告位：</label>
+	                        <div class="col-sm-3">
+	                            <select class="form-control" name="adPositionId">
+									[#list adPositions as adPosition]
+										<option value="${adPosition.id}">${adPosition.name} [${adPosition.width} × ${adPosition.height}]</option>
+									[/#list]
+								</select>
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">内容：</label>
+	                        <div class="col-sm-8">
+	                           <textarea id="content" name="content" class="ibox-content no-padding" style="height: 250px;"></textarea>
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">图片：</label>
+	                        <div class="col-sm-3">
+	                            <input type="text" id="image" name="image" class="form-control" />
+	                        </div>
+	                        <div class="col-sm-3">
+								<a href="javascript:;" id="filePicker" class="btn btn-primary">选择文件</a>
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">链接地址：</label>
+	                        <div class="col-sm-3">
+	                            <input placeholder="链接地址" class="form-control" type="text" name="url">
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">排序：</label>
+	                        <div class="col-sm-3">
+	                            <input placeholder="排序" class="form-control" type="text" name="sort">
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">设置：</label>
+	                        <div class="col-sm-3">
+	                            <div class="checkbox">
+	                               <label class="m-r"><input type="checkbox" name="isEnabled" value="true" checked/>启用</label>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="modal-footer col-sm-3 col-sm-offset-2">
+	                <button type="submit" class="btn btn-w-m btn-primary">确定</button>
+	                <button type="button" class="btn btn-w-m btn-default" onclick="history.back(); return false;">取消</button>
+	            </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+$().ready(function() {
+
+	var $inputForm = $("#inputForm");
+	var $type = $("#type");
+	var $content = $("#content");
+	var $image = $("#image");
+	var $filePicker = $("#filePicker");
+	
+	
+	
+	$filePicker.uploader();
+	
+	$content.editor();
+	
+	$type.change(function() {
+		if ($(this).val() == "text") {
+			$content.prop("disabled", false).closest(".form-group").show();
+			$image.prop("disabled", true).closest(".form-group").hide();
+		} else {
+			$content.prop("disabled", true).closest(".form-group").hide();
+			$image.prop("disabled", false).closest(".form-group").show();
+		}
+	});
+	
+	// 表单验证
+	$inputForm.validate({
+		rules: {
+			title: "required",
+			image: {
+				required: true,
+				pattern: /^(http:\/\/|https:\/\/|\/).*$/i
+			},
+			url: {
+				pattern: /^(http:\/\/|https:\/\/|ftp:\/\/|mailto:|\/|#).*$/i
+			},
+			sort: "digits",
+			isEnabled: "required"
+		}
+	});
+
+});
+</script>

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>留言</title>
+<link rel="stylesheet" type="text/css" href="${base}/templates/${config.theme}/front/static/css/css.css">
+<script src="${base}/templates/${config.theme}/front/static/js/jquery.min.js"></script>
+<script src="${base}/templates/${config.theme}/front/static/js/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	var $captchaImage = $("#captchaImage");
+	
+	// 更换验证码
+	$captchaImage.click(function() {
+		$captchaImage.attr("src", "${base}/common/captcha?timestamp=" + new Date().getTime());
+	});
+	
+	 $("#inputForm").submit(function() {
+		 var name = $("#name").val();
+		 if(name == ""){
+			 alert("请输入您的姓名");
+			 return false;
+		 }
+		 var qq = $("#qq").val();
+		 if(qq == ""){
+			 alert("请输入 联系QQ");
+			 return false;
+		 }
+		 var content = $("#content").val();
+		 if(content == ""){
+			 alert("请输入 留言内容");
+			 return false;
+		 }
+		 $.ajax({  
+	            type: $("#inputForm").attr("method"),
+	            dataType: "json", 
+	            url: $("#inputForm").attr("action"),
+	            data: $("#inputForm").serialize(),  
+	            error: function (data) { },  
+	            success: function (data){ 
+	            	if(data.type=="error"){
+	            		alert(data.content);
+	            	}else{
+		            	alert("留言成功!");
+	            	}
+	            }  
+	        });  
+		 return false;
+	 });
+	
+	
+	
+});
+</script>
+</head>
+<body>
+<!-- header start -->
+[#include "/templates/${config.theme}/front/header.html" /]
+<!-- header end -->
+    <div class="blank10 clear"></div>
+    <div class="mainbody ">
+    <div class=" bg">
+
+    <div class="newstitle">
+    您当前位置：<a  href="${base}/">首页</a> >> 留言
+    </div>
+        <div class="item-list">
+           <form id="inputForm" action="${base}/form/save" method="post">
+           	<input type="hidden" name="formModelId" value="1" />
+			<table width="100%" class="table_form ">
+			<tr>
+				<th width="100"></th>
+				<td></td>
+			</tr>
+			<tr>
+				<th><font color="red">*</font>您的姓名：</th>
+				<td><input type="text" value="" class="input-text" name="name" id="name"  style='width:150px;'></td>
+			</tr>
+			<tr>
+				<th> <font color="red">*</font> 联系QQ：</th>
+				<td><input type="text" value="" class="input-text" name="qq" id="qq" style='width:150px;'></td>
+			</tr>
+			<tr>
+				<th> <font color="red">*</font> 留言内容：</th>
+				<td><textarea style="width:400px;height:90px;" name="content" id="content"></textarea></td>
+			</tr>	
+			<tr>
+				<th> <font color="red">*</font> 验证码：</th>
+				<td><input type="text" value="" class="input-text" name="captcha" id="captcha" style='width:150px;'><img id="captchaImage" src="${base}/common/captcha" title="点击更换验证码" style="height: 28px;"/></td>
+			</tr>			
+			<tr>
+				<th >&nbsp;</th>
+				<td ><input type="submit" class="button" value="提 交" name="submit"></td>
+			</tr>
+			</table>
+			</form>
+
+        </div>
+    </div>
+    </div>
+    <div class="clear blank10"></div>
+<!-- footer start -->
+[#include "/templates/${config.theme}/front/footer.html" /]
+<!-- footer end -->
+</body>
+</html>

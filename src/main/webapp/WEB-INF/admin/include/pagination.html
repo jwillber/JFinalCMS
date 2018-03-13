@@ -1,0 +1,31 @@
+[#escape x as x?html]
+<div class="page">
+	<input type="hidden" id="pageSize" name="pageSize" value="${page.pageSize}" />
+	<input type="hidden" id="totalPage" name="totalPage" value="${page.totalPage}" />
+	[#if totalPages > 1]
+		<p>共有 ${page.totalRow} 条数据，当前第 ${page.pageNumber} 页</p>
+		<ul class="pagination">
+			[#if hasPrevious]
+				<li><a href="javascript: $.pageSkip(${previousPageNumber});" class="previousPage">上一页</a></li>
+			[#else]
+				<li><a href="javascript:;" class="previousPage">上一页</a></li>
+			[/#if]
+			[#list segment as segmentPageNumber]
+				[#if segmentPageNumber != pageNumber]
+					<li><a href="javascript: $.pageSkip(${segmentPageNumber});">${segmentPageNumber}</a></li>
+				[#else]
+					<li class="active"><a href="javascript:;" class="currentPage">${segmentPageNumber}</a></li>
+				[/#if]
+			[/#list]
+			[#if hasNext]
+				<li><a href="javascript: $.pageSkip(${nextPageNumber});" class="nextPage">下一页</a></li>
+			[#else]
+				<li><a href="javascript:;" class="nextPage">下一页</a></li>
+			[/#if]
+		 </ul>
+		<p>共${totalPages}页</p>
+		<div class="form-input"><input id="pageNumber" name="pageNumber" value="${pageNumber}" class="form-control"/></div>
+		<button type="submit" class="btn btn-primary">确定</button>
+	[/#if]
+</div>
+[/#escape]

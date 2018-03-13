@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>地区管理</title>
+[#include "/WEB-INF/admin/include/common.html"]
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>地区管理</h5>
+            </div>
+            <div class="ibox-content">
+                <!-- 列表 start -->
+                <div class="form-horizontal clear">
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            <a class="btn btn-primary" href="add[#if parent??]?parentId=${parent.id}[/#if]"><i class="fa fa-plus"></i> 添加</a>
+                       		[#if parent??]
+								[#if parent.parent??]
+									<a class="btn btn-primary" href="list?parentId=${parent.parent.id}"><i class="fa fa-arrow-up"></i> 上级地区</a>
+								[#else]
+									<a class="btn btn-primary" href="list"><i class="fa fa-arrow-up"></i> 上级地区</a>
+								[/#if]
+							[/#if]
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="listTable">
+                            <thead>
+                                <tr>
+                                    <th colspan="5" class="green" style="text-align: center;">
+										[#if parent??]上级地区 - ${parent.name}[#else]顶级地区[/#if]
+									</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            [#list areas?chunk(5, "") as row]
+								<tr>
+									[#list row as area]
+										[#if area?has_content]
+											<td>
+												<a href="list?parentId=${area.id}" title="查看">${area.name}</a>
+												<a href="edit?id=${area.id}">[编辑]</a>
+												<a href="javascript:;" class="delete" val="${area.id}">[删除]</a>
+											</td>
+										[#else]
+											<td>
+												&nbsp;
+											</td>
+										[/#if]
+									[/#list]
+								</tr>
+							[/#list]
+							[#if !areas?has_content]
+								<tr>
+									<td colspan="5" style="text-align: center; color: red;">
+										无下级地区 <a href="add[#if parent??]?parentId=${parent.id}[/#if]" class="silver">添加</a>
+									</td>
+								</tr>
+							[/#if]
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- 列表 end -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+$().ready(function() {
+
+	var $delete = $("#listTable a.delete");
+	
+	// 删除
+	$delete.click(function() {
+		var $this = $(this);
+		if(confirm("您确定要删除吗？")){
+			$.ajax({
+				url: "delete",
+				type: "POST",
+				data: {id: $this.attr("val")},
+				dataType: "json",
+				cache: false,
+				success: function(data) {
+					if (data.type == "success") {
+						$this.parent().html("&nbsp;");
+					}
+				}
+			});
+		}
+		return false;
+	});
+
+});
+</script>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>${useName}管理</title>
+${r'[#include "/WEB-INF/admin/include/common.html"]'}
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>${useName}管理</h5>
+            </div>
+           	<form id="listForm" action="list" method="get">
+	            <div class="ibox-content">
+	                <!-- 搜索 start -->
+	                <div class="form-horizontal clear">
+	                    <div class="form-group">
+	                    	[#list fields as field]
+	                    	[#if field.useSearch]
+	                        <label class="col-sm-1 control-label">${field.title}：</label>
+	                        <div class="col-sm-2"><input class="form-control" type="text" name="${field.name}"></div>
+	                        [/#if]
+	                        [/#list]
+	                    </div>
+	                    <div class="text-center">
+                            <input type="submit" class="btn btn-primary btn-w-m" value="查 询">
+                            <input type="reset" class="btn btn-primary btn-w-m" value="重 置">
+                        </div>
+	                </div>
+	                <!-- 搜索 end -->
+	                <!-- 列表 start -->
+	                <div class="form-horizontal clear">
+	                    <div class="form-group">
+	                        <div class="col-sm-8">
+	                        	[#if useAdd]
+	                            <a class="btn btn-primary" href="add"><i class="fa fa-plus"></i> 添加</a>
+	                        	[/#if]
+	                        	[#if useDelete]
+	                            <a href="javascript:;" class="btn btn-warning disabled" id="deleteButton"><i class="fa fa-trash"></i> 删除</a>
+	                        	[/#if]
+	                            <a href="javascript:;" class="btn btn-primary" id="refreshButton"><i class="fa fa-refresh"></i> 刷新</a>
+	                        </div>
+	                    </div>
+	                    <div class="table-responsive">
+	                        <table class="table table-bordered" id="listTable">
+	                            <thead>
+	                                <tr>
+	                                    <th width="40" class="text-center"><input type="checkbox" id="selectAll" /></th>
+	                                    <th>ID</th>
+	                                    [#list fields as field]
+	                                    [#if field.useTitle]
+	                                    <th>${field.title}</th>
+	                                    [/#if]
+	                                    [/#list]
+	                                    <th>操作</th>
+	                                </tr>
+	                            </thead>
+	                            <tbody>
+	                            	${r'[#list page.list as '}${objectName}]
+	                                <tr>
+	                                    <td class="text-center"><input type="checkbox" name="ids" value="${r'${'}${objectName}.id${r'}'}" /></td>
+		                            	[#list fields as field]
+		                            	[#if field.useList]
+	                                    <td>${r'${'}${objectName}.${field.name}${r'}'}</td>
+		                                [/#if]
+		                                [/#list]
+	                                    <td>
+	                                        <a href="edit?id=${r'${'}${objectName}.id${r'}'}">[编辑]</a>
+	                                    </td>
+	                                </tr>
+	                                ${r'[/#list]'}
+	                            </tbody>
+	                        </table>
+	                    </div>
+	                    <div class="text-center">
+                            ${r'[@pagination pageNumber = page.pageNumber totalPages = page.totalPage]
+								[#include "/WEB-INF/admin/include/pagination.html"]
+							[/@pagination]'}
+	                    </div>
+	                </div>
+	                <!-- 列表 end -->
+	            </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

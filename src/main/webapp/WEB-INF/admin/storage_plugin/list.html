@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>存储插件管理</title>
+[#include "/WEB-INF/admin/include/common.html"]
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>角色管理</h5>
+            </div>
+           	<form id="listForm" action="list" method="get">
+	            <div class="ibox-content">
+	                <!-- 搜索 start -->
+	                <!-- 搜索 end -->
+	                <!-- 列表 start -->
+	                <div class="form-horizontal clear">
+	                    <div class="form-group">
+	                        <div class="col-sm-8">
+	                            <a href="javascript:;" class="btn btn-primary" id="refreshButton"><i class="fa fa-refresh"></i> 刷新</a>
+	                        </div>
+	                    </div>
+	                    <div class="table-responsive">
+	                        <table class="table table-bordered" id="listTable">
+	                            <thead>
+	                                <tr>
+	                                	<th>ID</th>
+	                                    <th>名称</th>
+	                                    <th>启用</th>
+	                                    <th>操作</th>
+	                                </tr>
+	                            </thead>
+	                            <tbody>
+	                            	[#list storagePlugins as storagePlugin]
+	                                <tr>
+	                                	<td>${storagePlugin.id}</td>
+	                                    <td>
+	                                    	[#if storagePlugin.siteUrl??]
+												<a href="${storagePlugin.siteUrl}" target="_blank">${storagePlugin.name}</a>
+											[#else]
+												${storagePlugin.name}
+											[/#if]
+	                                    </td>
+	                                    <td>
+	                                    	[#if storagePlugin.isEnabled]
+	                                    		已启用
+	                                    	[#else]
+	                                    		未启用
+	                                    	[/#if]
+	                                    </td>
+	                                    <td>
+	                                        <a href="${storagePlugin.settingUrl}?id=${storagePlugin.id}">[设置]</a>
+	                                    </td>
+	                                </tr>
+	                                [/#list]
+	                            </tbody>
+	                        </table>
+	                    </div>
+	                </div>
+	                <!-- 列表 end -->
+	            </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

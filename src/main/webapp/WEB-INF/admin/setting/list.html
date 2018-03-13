@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>自定义设置</title>
+[#include "/WEB-INF/admin/include/common.html"]
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>自定义设置</h5>
+            </div>
+            <form id="inputForm" action="list" method="post">
+	            <div class="ibox-content">
+	                <div class="form-horizontal clearfix">
+	                	<div class="form-group">
+	                        <div class="col-sm-8">
+	                            <a class="btn btn-primary" href="add"><i class="fa fa-plus"></i> 添加</a>
+	                        </div>
+	                    </div>
+	                    [#list settings as setting]
+		                    <div class="form-group">
+		                        <label class="col-sm-3 control-label">${setting.title}：</label>
+	                        	[#if setting.type=="textarea"]
+			                        <div class="col-sm-3">
+	                        			<textarea class="form-control" style="height: 250px;" title="${setting.title}" readonly="readonly">${setting.value}</textarea>
+			                        </div>
+	                        	[#elseif setting.type=="editor"]
+	                        		<div class="col-sm-8">
+	                        			<textarea class="ibox-content no-padding fieldEditor" style="height: 250px;" title="${setting.title}" readonly="readonly">${setting.value}</textarea>
+	                        		</div>
+	                        	[#elseif setting.type=="input"]
+	                        		<div class="col-sm-3">
+	                        			<input placeholder="${setting.title}" class="form-control" type="text" value="${setting.value}" readonly="readonly">
+	                        		</div>
+	                        	[#elseif setting.type=="file"]
+									<div class="col-sm-3">
+										<input type="text" value="${setting.value}" class="form-control" title="${setting.title}" readonly="readonly"/>
+									</div>
+	                        	[/#if]
+	                        	<div class="col-sm-3">
+	                        	    <a href="javascript:;" class="delete" val="${setting.id}">删除</a>    
+	                        	    <a href="edit?id=${setting.id}">编辑</a>        
+	                        	</div>
+		                    </div>
+	                    [/#list]
+	                </div>
+	            </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+$().ready(function() {
+	
+   $.each($(".fieldEditor"),function(index,item){
+        $(item).editor();
+    });
+    
+    $.each($(".filePicker"),function(index,item){
+        $(item).uploader();
+    });
+
+	var $delete = $("#inputForm a.delete");
+	
+	// 删除
+    $delete.click(function() {
+        var $this = $(this);
+        if(confirm("您确定要删除吗？")){
+            $.ajax({
+                url: "delete",
+                type: "POST",
+                data: {id: $this.attr("val")},
+                dataType: "json",
+                cache: false,
+                success: function(message) {
+                    if (message.type == "success") {
+                        $this.closest(".form-group").remove();
+                    }
+                }
+            });
+        }
+        return false;
+    });
+
+});
+</script>
+
+

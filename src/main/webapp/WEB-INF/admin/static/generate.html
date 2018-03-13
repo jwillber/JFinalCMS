@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>生成静态</title>
+[#include "/WEB-INF/admin/include/common.html"]
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>生成静态</h5>
+            </div>
+           <form id="inputForm" action="generateSubmit" method="post">
+	            <div class="ibox-content">
+	                <div class="form-horizontal clearfix">
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">生成类型：</label>
+	                        <div class="col-sm-3">
+	                            <select class="form-control" id="generateType" name="generateType">
+	                            	<option value="">全部</option>
+	                                [#list generateTypeNames.keySet() as key]
+										<option value="${key}">${generateTypeNames.get(key)}</option>
+									[/#list]
+	                            </select>
+	                        </div>
+	                    </div>
+	                    <div class="form-group" style="display: none;">
+	                        <label class="col-sm-3 control-label">栏目：</label>
+	                        <div class="col-sm-3">
+	                            <select class="form-control" id="categoryId" name="categoryId">
+	                            	<option value="">全部</option>
+	                               	[#list categoryTree as category]
+										<option value="${category.id}">
+											[#if category.grade != 0]
+												[#list 1..category.grade as i]
+													&nbsp;&nbsp;
+												[/#list]
+											[/#if]
+											${category.name}
+										</option>
+									[/#list]
+	                            </select>
+	                        </div>
+	                    </div>
+	                    <div class="form-group" style="display: none;">
+	                        <label class="col-sm-3 control-label">起始日期：</label>
+	                        <div class="col-sm-3">
+	                        	<input placeholder="起始日期" class="form-control" type="text" id="beginDate" name="beginDate" value="${defaultBeginDate?string("yyyy-MM-dd")}" title="开始日期" onfocus="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" >
+	                        </div>
+	                    </div>
+	                    <div class="form-group" style="display: none;">
+	                        <label class="col-sm-3 control-label">结束日期：</label>
+	                        <div class="col-sm-3">
+	                        	<input placeholder="结束日期" class="form-control" type="text" id="endDate" name="endDate" value="${defaultEndDate?string("yyyy-MM-dd")}" title="结束日期" onfocus="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});" >
+	                        </div>
+	                    </div>
+	                    <div class="form-group" style="display: none;">
+	                        <label class="col-sm-3 control-label">每次生成数：</label>
+	                        <div class="col-sm-3">
+	                        	<input placeholder="每次生成数" class="form-control" type="text" id="count" name="count" value="100">
+	                        </div>
+	                    </div>
+	                    <div class="form-group" style="display: none;">
+	                        <label class="col-sm-3 control-label">&nbsp;</label>
+	                        <div class="col-sm-3">
+	                        	<span class="loadingBar">&nbsp;</span>
+								<div id="status"></div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="modal-footer col-sm-3 col-sm-offset-2">
+	                <button type="submit" class="btn btn-w-m btn-primary">确定</button>
+	            </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+$().ready(function() {
+
+	var $inputForm = $("#inputForm");
+	var $generateType = $("#generateType");
+	var $categoryId = $("#categoryId");
+	var $beginDate = $("#beginDate");
+	var $endDate = $("#endDate");
+	var $count = $("#count");
+	var $status = $("#status");
+	var $submit = $("input:submit");
+	var first;
+	var generateCount;
+	var generateTime;
+	var generateType;
+	var categoryId;
+	var beginDate;
+	var endDate;
+	var count;
+	
+	// 生成类型
+	$generateType.change(function() {
+		var $this = $(this);
+		if ($this.val() == "content") {
+			$categoryId.closest(".form-group").show();
+			$beginDate.closest(".form-group").show();
+			$endDate.closest(".form-group").show();
+			$count.closest(".form-group").show();
+		} else if ($this.val() == "category") {
+			$categoryId.closest(".form-group").show();
+			$beginDate.closest(".form-group").hide();
+			$endDate.closest(".form-group").hide();
+			$count.closest(".form-group").hide();
+		} else {
+			$categoryId.closest(".form-group").hide();
+			$beginDate.closest(".form-group").hide();
+			$endDate.closest(".form-group").hide();
+			$count.closest(".form-group").hide();
+		}
+	});
+	
+	// 表单验证
+	$inputForm.validate({
+		rules: {
+			count: {
+				required: true,
+				integer: true,
+				min: 1
+			}
+		},
+		submitHandler: function(form) {
+			first = null;
+			generateCount = 0;
+			generateTime = 0;
+			generateType = $generateType.val();
+			categoryId = $categoryId.val();
+			beginDate = $beginDate.val();
+			endDate = $endDate.val();
+			count = parseInt($count.val());
+			$generateType.prop("disabled", true);
+			$categoryId.prop("disabled", true);
+			$beginDate.prop("disabled", true);
+			$endDate.prop("disabled", true);
+			$count.prop("disabled", true);
+			$submit.prop("disabled", true);
+			$status.closest(".form-group").show();
+			generate();
+		}
+	});
+	
+	function generate() {
+		if (generateType == "content") {
+			$status.text("正在生成静态  [" + (first == null ? 1 : first) + " - " + (first + count) + "]");
+		} else {
+			$status.text("正在生成静态");
+		}
+		$.ajax({
+			url: "generateSubmit",
+			type: "POST",
+			data: {generateType: generateType, categoryId: categoryId, beginDate: beginDate, endDate: endDate, first: first, count: count},
+			dataType: "json",
+			cache: false,
+			success: function(data) {
+				generateCount += data.generateCount;
+				generateTime += data.generateTime;
+				if (!data.isCompleted) {
+					if (generateType == "content") {
+						first = data.first;
+					} 
+					generate();
+				} else {
+					$generateType.prop("disabled", false);
+					$categoryId.prop("disabled", false);
+					$beginDate.prop("disabled", false);
+					$endDate.prop("disabled", false);
+					$count.prop("disabled", false);
+					$submit.prop("disabled", false);
+					$status.closest(".form-group").hide();
+					$status.empty();
+					var time;
+					if (generateTime < 60000) {
+						time = (generateTime / 1000).toFixed(2) + "秒";
+					} else {
+						time = (generateTime / 60000).toFixed(2) + "分";
+					}
+					alert("生成静态成功 [生成数: " + generateCount + " 耗时: " + time + "]");
+				}
+			}
+		});
+	}
+
+});
+</script>

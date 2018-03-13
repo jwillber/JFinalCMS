@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>生成sitemap</title>
+[#include "/WEB-INF/admin/include/common.html"]
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>生成sitemap</h5>
+            </div>
+           <form id="inputForm" action="generateSubmit" method="post">
+	            <div class="ibox-content">
+	                <div class="form-horizontal clearfix">
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">sitemap地址：</label>
+	                        <div class="col-sm-3">
+	                            <a href="${config.siteUrl}${sitemapPath}" target="_blank">${config.siteUrl}${sitemapPath}</a>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="modal-footer col-sm-3 col-sm-offset-2">
+	                <button type="submit" class="btn btn-w-m btn-primary">确定</button>
+	            </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

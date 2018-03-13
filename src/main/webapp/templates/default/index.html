@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页</title>
+<link rel="stylesheet" type="text/css" href="${base}/templates/${config.theme}/front/static/css/css.css">
+<script src="${base}/templates/${config.theme}/front/static/js/jquery.min.js"></script>
+<script src="${base}/templates/${config.theme}/front/static/js/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<body>
+<!-- header start -->
+[#include "/templates/${config.theme}/front/header.html" /]
+<!-- header end -->
+<div class="mainbody">
+	<div class="w740 fl">
+		<!-- indexnewslist-->
+		[@category id =1]
+		<div class="newwarp bg">
+			<div class="newstitle"><h3>${category.name}</h3><a href="${category.path}" class="more">更多&gt;&gt;</a></div>
+			[@content_list categoryId=category.id count=1]
+				[#list contents as content]
+					<div class="newsfocus">
+						<div><a href="${content.path}"><img src="${content.image}" /></a></div>
+						<h3><a href="${content.path}" title="${content.title}">${abbreviate(content.title,34,"...")}</a></h3>
+						<p>${abbreviate(content.text,34,"...")}</p>
+					</div>
+				[/#list]
+			[/@content_list]
+			<ul class="indexnewslist">
+				[@content_list categoryId=category.id count=3]
+					[#list contents as content]
+						<li><span>${content.createDate?string("yyyy-MM-dd")}</span>· <a href="${content.path}">${abbreviate(content.title,34,"...")}</a></li>
+					[/#list]
+				[/@content_list]
+			</ul>
+		</div>
+		[/@category]
+
+		<!-- aboutus-->
+		<div class="aboutus bg">
+			[@category id = 1]
+					<div class="newstitle"><h3>${category.name}</h3>
+						<a href="${category.path}" class="more">更多&gt;&gt;</a>
+					</div>
+					<div class="blank10 clear"></div>
+					${abbreviate(category.pageContent,200,"...")}
+			[/@category]
+		</div>
+		<!-- /aboutus-->
+		<div class="clear"></div>
+	</div>
+	<div class="w210 fr">
+		<div class="contact bg">
+ <div class="newstitle"><h3>联系我们</h3></div> 
+[@ad_position id = 9 /]
+</div>
+	</div>
+	<div class="blank10 clear"></div>
+		[@category id = 2]
+			<div class="picMarquee-left bg">
+			<div class="hd">
+			<h3>${category.name}</h3>
+				<a class="next"></a>
+				<a class="prev"></a>
+			</div>
+			<div class="bd">
+				<ul class="picList">
+					[@content_list categoryId=category.id count=10]
+						[#list contents as content]
+							<li>
+								<div class="pic"><a href="${content.path}" target="_blank"><img src="${content.image}" /></a></div>
+							</li>
+						[/#list]
+					[/@content_list]
+				</ul>
+			</div>	<div class="blank10 clear"></div>
+
+		</div>
+	[/@category]
+		<script  type="text/javascript">
+		jQuery(".picMarquee-left").slide({mainCell:".bd ul",autoPlay:true,effect:"leftMarquee",vis:6,interTime:50,trigger:"click"});
+		</script>
+<div class="blank10 clear"></div>
+
+<div  class="link bg">友情连接：
+[@friend_link_list count = 8]
+	[#list friendLinks as friendLink]
+			<a href="${friendLink.url}" target="_blank">${friendLink.name}</a>
+	[/#list]
+[/@friend_link_list]
+</div>
+</div>
+<!-- footer start -->
+[#include "/templates/${config.theme}/front/footer.html" /]
+<!-- footer end -->
+</body>
+</html>

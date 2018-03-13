@@ -1,0 +1,491 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="${base}/favicon.ico">
+<link href="${base}/static/css/bootstrap.min.css" rel="stylesheet">
+<link href="${base}/static/css/font-awesome.min.css" rel="stylesheet">
+<link href="${base}/static/css/animate.min.css" rel="stylesheet">
+<link href="${base}/static/css/style.min.css" rel="stylesheet">
+<link href="${base}/static/plugins/webuploader/webuploader.css" rel="stylesheet">
+<script type="text/javascript" src="${base}/static/js/jquery.js"></script>
+<script type="text/javascript" src="${base}/static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${base}/static/js/jquery.validate.js"></script>
+<script type="text/javascript" src="${base}/static/js/jquery.autocomplete.js"></script>
+<script type="text/javascript" src="${base}/static/js/jquery.lSelect.js"></script>
+<script type="text/javascript">
+/*
+ * 
+ * JavaScript - Common
+ */
+
+var kuaifan = {
+ 	base: "${base}",
+ 	locale: "zh_CN",
+ 	theme: "${config.theme}"
+ };
+
+var setting = {
+	uploadMaxSize: ${config.uploadMaxSize},
+	uploadImageExtension: "${config.uploadImageExtension}",
+	uploadMediaExtension: "${config.uploadMediaExtension}",
+	uploadFileExtension: "${config.uploadFileExtension}"
+};
+
+// 添加Cookie
+function addCookie(name, value, options) {
+	if (arguments.length > 1 && name != null) {
+		if (options == null) {
+			options = {};
+		}
+		if (value == null) {
+			options.expires = -1;
+		}
+		if (typeof options.expires == "number") {
+			var time = options.expires;
+			var expires = options.expires = new Date();
+			expires.setTime(expires.getTime() + time * 1000);
+		}
+		if (options.path == null) {
+			options.path = "${config.cookiePath}";
+		}
+		if (options.domain == null) {
+			options.domain = "${config.cookieDomain}";
+		}
+		document.cookie = encodeURIComponent(String(name)) + "=" + encodeURIComponent(String(value)) + (options.expires != null ? "; expires=" + options.expires.toUTCString() : "") + (options.path != "" ? "; path=" + options.path : "") + (options.domain != "" ? "; domain=" + options.domain : "") + (options.secure != null ? "; secure" : "");
+	}
+}
+
+// 获取Cookie
+function getCookie(name) {
+	if (name != null) {
+		var value = new RegExp("(?:^|; )" + encodeURIComponent(String(name)) + "=([^;]*)").exec(document.cookie);
+		return value ? decodeURIComponent(value[1]) : null;
+	}
+}
+
+// 移除Cookie
+function removeCookie(name, options) {
+	addCookie(name, null, options);
+}
+
+// Html转义
+function escapeHtml(str) {
+	return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+// 字符串缩略
+function abbreviate(str, width, ellipsis) {
+	if ($.trim(str) == "" || width == null) {
+		return str;
+	}
+	var i = 0;
+	for (var strWidth = 0; i < str.length; i++) {
+		strWidth = /^[\u4e00-\u9fa5\ufe30-\uffa0]$/.test(str.charAt(i)) ? strWidth + 2 : strWidth + 1;
+		if (strWidth >= width) {
+			break;
+		}
+	}
+	return ellipsis != null && i < str.length - 1 ? str.substring(0, i) + ellipsis : str.substring(0, i);
+}
+
+
+(function($) {
+
+	var zIndex = 100;
+	
+	// 对话框
+	$.dialog = function(options) {
+		var settings = {
+			ok: '确 定',
+			cancel: '取 消',
+			onShow: null,
+			onClose: null,
+			onOk: null,
+			onCancel: null
+		};
+		$.extend(settings, options);
+		
+		if (settings.content == null) {
+			return false;
+		}
+		//定义内容
+		var $modal = $('<div class="modal fade"><\/div>');	
+		var $modalDialog = $('<div class="modal-dialog modal-lg"><\/div>');
+		var $modalContent = $('<div class="modal-content"><\/div>');
+		var $modalBody = $('<div class="modal-body"><\/div>');
+		var $modalHeader = $('<div class="modal-header"><\/div>');
+		var $modalTitle;
+		var $modalClose = $('<button type="button" class="close"><span>×<\/span><span class="sr-only">Close<\/span><\/button>').appendTo($modalHeader);
+		var $modalFooter;
+		var $modalOk;
+		var $modalCancel;
+		if (settings.title != null) {
+			$modalTitle = $('<h4 class="modal-title"><\/h4>');
+			$modalTitle.text(settings.title);
+		}
+		if (settings.ok != null || settings.cancel != null) {
+			$modalFooter = $('<div class="modal-footer"><\/div>');
+			if (settings.ok != null) {
+				$dialogOk = $('<input type="button" class="btn btn-w-m btn-primary" value="' + settings.ok + '" \/>').appendTo($modalFooter);
+			}
+			if (settings.cancel != null) {
+				$dialogCancel = $('<input type="button" class="btn btn-w-m btn-default" value="' + settings.cancel + '" \/>').appendTo($modalFooter);
+			}
+		}
+		if (!window.XMLHttpRequest) {
+			$modalDialog.append('<iframe class="dialogIframe"><\/iframe>');
+		}
+		//填充内容
+		$modalClose.appendTo($modalHeader);
+		if($modalTitle!=null){
+			$modalTitle.appendTo($modalHeader);
+		}
+		$modalHeader.appendTo($modalContent);
+		$modalBody.html(settings.content);
+		$modalBody.appendTo($modalContent);
+		$modalFooter.appendTo($modalContent);
+		$modalContent.appendTo($modalDialog);
+		$modalDialog.appendTo($modal);
+		$modal.appendTo("body");
+		var dragStart = {};
+		var dragging = false;
+		dialogShow();
+		
+		if ($modalTitle != null) {
+			$modalTitle.mousedown(function(event) {
+				$modal.css({"z-index": zIndex ++});
+				var offset = $modal.offset();
+				dragStart.pageX = event.pageX;
+				dragStart.pageY = event.pageY;
+				dragStart.left = offset.left;
+				dragStart.top = offset.top;
+				dragging = true;
+				return false;
+			}).mouseup(function() {
+				dragging = false;
+			});
+			
+			$(document).mousemove(function(event) {
+				if (dragging) {
+					$modal.offset({"left": dragStart.left + event.pageX - dragStart.pageX, "top": dragStart.top + event.pageY - dragStart.pageY});
+					return false;
+				}
+			}).mouseup(function() {
+				dragging = false;
+			});
+		}
+		
+		if ($modalClose != null) {
+			$modalClose.click(function() {
+				dialogClose();
+				return false;
+			});
+		}
+		
+		if ($dialogOk != null) {
+			$dialogOk.click(function() {
+				if (settings.onOk && typeof settings.onOk == "function") {
+					if (settings.onOk($modal) != false) {
+						dialogClose();
+					}
+				} else {
+					dialogClose();
+				}
+				return false;
+			});
+		}
+		
+		if ($dialogCancel != null) {
+			$dialogCancel.click(function() {
+				if (settings.onCancel && typeof settings.onCancel == "function") {
+					if (settings.onCancel($modal) != false) {
+						dialogClose();
+					}
+				} else {
+					dialogClose();
+				}
+				return false;
+			});
+		}
+		
+		function dialogShow() {
+			if (settings.onShow && typeof settings.onShow == "function") {
+				if (settings.onShow($modal) != false) {
+					$modal.modal("show");
+				}
+			} else {
+				$modal.modal("show");
+			}
+		}
+		
+		function dialogClose() {
+			if (settings.onClose && typeof settings.onClose == "function") {
+				if (settings.onClose($modal) != false) {
+					$modal.modal("hide");
+					$modal.on("hidden.bs.modal", function() {
+						$modal.remove();
+					});
+				}
+			} else {
+				$modal.modal("hide");
+				$modal.on("hidden.bs.modal", function() {
+					$modal.remove();
+				});
+			}
+		}
+		return $modal;
+	};
+	
+	$.fn.extend({
+		// 文件上传
+		uploader: function(options) {
+			var settings = {
+				url: '${base}/admin/file/upload',
+				fileType: "image",
+				fileName: "file",
+				data: {},
+				maxSize: ${config.uploadMaxSize},
+				extensions: null,
+				before: null,
+				complete: null
+			};
+			$.extend(settings, options);
+			
+			if (settings.extensions == null) {
+				switch(settings.fileType) {
+					case "media":
+						settings.extensions = '${config.uploadMediaExtension}';
+						break;
+					case "file":
+						settings.extensions = '${config.uploadFileExtension}';
+						break;
+					default:
+						settings.extensions = '${config.uploadImageExtension}';
+				}
+			}
+			
+			var $progressBar = $('<div class="progressBar"><\/div>').appendTo("body");
+			return this.each(function() {
+				var element = this;
+				var $element = $(element);
+				
+				var webUploader = WebUploader.create({
+					swf: '${base}/static/plugins/webuploader/webuploader.swf',
+					server: settings.url + (settings.url.indexOf('?') < 0 ? '?' : '&') + 'fileType=' + settings.fileType,
+					pick: {
+						id: element,
+						multiple: false
+					},
+					fileVal: settings.fileName,
+					formData: settings.data,
+					fileSingleSizeLimit: settings.maxSize * 1024 * 1024,
+					accept: {
+						extensions: settings.extensions
+					},
+					fileNumLimit: 1,
+					auto: true
+				}).on('beforeFileQueued', function(file) {
+					if ($.isFunction(settings.before) && settings.before.call(element, file) === false) {
+						return false;
+					}
+					if ($.trim(settings.extensions) == '') {
+						this.trigger('error', 'Q_TYPE_DENIED');
+						return false;
+					}
+					this.reset();
+					$progressBar.show();
+				}).on('uploadProgress', function(file, percentage) {
+					$progressBar.width(percentage * 100 + '%');
+				}).on('uploadAccept', function(file, data) {
+					$progressBar.fadeOut("slow", function() {
+						$progressBar.width(0);
+					});
+					if (data.state != 'SUCCESS') {
+						alert(data.message);
+						return false;
+					}
+					$element.parent().parent().find("input:text").val(data.url);
+					if ($.isFunction(settings.complete)) {
+						settings.complete.call(element, file, data);
+					}
+				}).on('error', function(type) {
+					switch(type) {
+						case "F_EXCEED_SIZE":
+							alert("上传文件大小超出限制");
+							break;
+						case "Q_TYPE_DENIED":
+							alert("上传文件格式不正确");
+							break;
+						default:
+							alert("上传文件出现错误");
+					}
+				});
+				
+				$element.mouseover(function() {
+					webUploader.refresh();
+				});
+			});
+		},
+		
+		// 编辑器
+		editor: function(options) {
+			window.UEDITOR_CONFIG = {
+				UEDITOR_HOME_URL: '${base}/static/plugins/ueditor/',
+				serverUrl: '${base}/admin/file/upload',
+				imageActionName: "uploadImage",
+				imageFieldName: "file",
+				imageMaxSize: ${config.uploadMaxSize * 1024 * 1024},
+				imageAllowFiles: [[#list config.uploadImageExtensions as extension]'.${extension}'[#if extension_has_next], [/#if][/#list]],
+				imageUrlPrefix: "",
+				imagePathFormat: "",
+				imageCompressEnable: false,
+				imageCompressBorder: 1600,
+				imageInsertAlign: "none",
+				videoActionName: "uploadMedia",
+				videoFieldName: "file",
+				videoMaxSize: ${config.uploadMaxSize * 1024 * 1024},
+				videoAllowFiles: [[#list config.uploadMediaExtensions as extension]'.${extension}'[#if extension_has_next], [/#if][/#list]],
+				videoUrlPrefix: "",
+				videoPathFormat: "",
+				fileActionName: "uploadFile",
+				fileFieldName: "file",
+				fileMaxSize: ${config.uploadMaxSize * 1024 * 1024},
+				fileAllowFiles: [[#list config.uploadFileExtensions as extension]'.${extension}'[#if extension_has_next], [/#if][/#list]],
+				fileUrlPrefix: "",
+				filePathFormat: "",
+				toolbars: [[
+					'fullscreen', 'source', '|',
+					'undo', 'redo', '|',
+					'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|',
+					'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+					'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+					'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+					'directionalityltr', 'directionalityrtl', 'indent', '|',
+					'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
+					'touppercase', 'tolowercase', '|',
+					'link', 'unlink', 'anchor', '|',
+					'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+					'insertimage', 'insertvideo', 'attachment', 'map','insertcode', 'insertframe', 'pagebreak', '|',
+					'horizontal', 'date', 'time', 'spechars', '|',
+					'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', '|',
+					'print', 'preview', 'searchreplace', 'drafts'
+				]],
+				lang: kuaifan.locale,
+				iframeCssUrl: null,
+				pageBreakTag: 'page_break_tag',
+				wordCount: false
+			};
+			
+			UE.Editor.prototype.getActionUrl = function(action) {
+				var serverUrl = this.getOpt('serverUrl');
+				switch(action) {
+					case "uploadImage":
+						return serverUrl + (serverUrl.indexOf('?') < 0 ? '?' : '&') + 'fileType=image';
+					case "uploadMedia":
+						return serverUrl + (serverUrl.indexOf('?') < 0 ? '?' : '&') + 'fileType=media';
+					case "uploadFile":
+						return serverUrl + (serverUrl.indexOf('?') < 0 ? '?' : '&') + 'fileType=file';
+				}
+				return null;
+			};
+			
+			UE.Editor.prototype.loadServerConfig = function() {
+				this._serverConfigLoaded = true;
+			};
+			
+			return this.each(function() {
+				var element = this;
+				var $element = $(element);
+				
+				UE.getEditor($element.attr("id"), options).ready(function() {
+					this.execCommand("serverparam", {
+						csrfToken: getCookie("csrfToken")
+					});
+				});
+			});
+		}
+	
+	});
+
+})(jQuery);
+
+$().ready(function() {
+
+	// AJAX全局设置
+	$.ajaxSetup({
+		traditional: true
+	});
+	
+	// 状态
+	$(document).ajaxComplete(function(event, request, settings) {
+		var validateStatus = request.getResponseHeader("validateStatus");
+		var loginStatus = request.getResponseHeader("loginStatus");
+		if (validateStatus == "accessDenied") {
+			alert("非法字符");
+		} else if (loginStatus == "accessDenied") {
+			alert("登录超时，请重新登录");
+			setTimeout(function() {
+				location.reload(true);
+			}, 2000);
+		} else if (loginStatus == "unauthorized") {
+			alert("对不起，您无此操作权限！");
+		}
+	});
+
+});
+
+//验证
+if ($.validator != null) {
+
+	$.extend($.validator.messages, {
+		required: '必填',
+		email: 'E-mail格式错误',
+		url: '网址格式错误',
+		date: '日期格式错误',
+		dateISO: '日期格式错误',
+		pointcard: '信用卡格式错误',
+		number: '只允许输入数字',
+		digits: '只允许输入零或正整数',
+		minlength: $.validator.format('长度不允许小于{0}'),
+		maxlength: $.validator.format('长度不允许大于{0}'),
+		rangelength: $.validator.format('长度必须在{0}-{1}之间'),
+		min: $.validator.format('不允许小于{0}'),
+		max: $.validator.format('不允许大于{0}'),
+		range: $.validator.format('必须在{0}-{1}之间'),
+		accept: '输入后缀错误',
+		equalTo: '两次输入不一致',
+		remote: '输入错误',
+		integer: '只允许输入整数',
+		positive: '只允许输入正数',
+		negative: '只允许输入负数',
+		decimal: '数值超出了允许范围',
+		pattern: '格式错误',
+		extension: '文件格式错误'
+	});
+	
+	$.validator.setDefaults({
+	    highlight: function(e) {
+	        $(e).closest(".form-group").removeClass("has-success").addClass("has-error")
+	    },
+	    success: function(e) {
+	        e.closest(".form-group").removeClass("has-error").addClass("has-success")
+	    },
+	    errorElement: "div",
+	    errorPlacement: function(e, r) {
+	        e.appendTo(r.is(":radio") || r.is(":checkbox") ? r.parent().parent().parent().parent() : r.parent().parent())
+	    },
+	    errorClass: "help-block m-b-none",
+	    validClass: "",
+	    ignore: ".ignore",
+	    submitHandler: function(form) {
+			$(form).find("input:submit").prop("disabled", true);
+			form.submit();
+		}
+	});
+
+}
+</script>
+<script type="text/javascript" src="${base}/static/plugins/webuploader/webuploader.js"></script>
+<script type="text/javascript" src="${base}/static/plugins/ueditor/ueditor.js"></script>
+<script type="text/javascript" src="${base}/static/plugins/datePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="${base}/static/js/list.js"></script>
+<script type="text/javascript" src="${base}/static/js/echarts.js"></script>

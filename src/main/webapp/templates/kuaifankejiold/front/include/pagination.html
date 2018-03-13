@@ -1,0 +1,27 @@
+<div class="pageBtn">
+[#if totalPages > 1]    
+	[#if hasPrevious]
+		<a href="[@pattern?replace("{pageNumber}", "${previousPageNumber}")?interpret /]" class="page_prev">&lt;</a>
+	[#else]
+		<a href="javascript:;" class="page_prev on">&lt;</a>
+	[/#if]
+	[#list segment as segmentPageNumber]
+		[#if segmentPageNumber_index == 0 && segmentPageNumber > firstPageNumber + 1]
+			 <a href="javascript:;"  class="page_num">...</a>
+		[/#if]
+		[#if segmentPageNumber != pageNumber]
+			<a href="[@pattern?replace("{pageNumber}", "${segmentPageNumber}")?interpret /]">${segmentPageNumber}</a>
+		[#else]
+			<a href="javascript:;" class="page_num on">${segmentPageNumber}</a>
+		[/#if]
+		[#if !segmentPageNumber_has_next && segmentPageNumber < lastPageNumber - 1]
+			<a href="javascript:;"  class="page_num">...</a>
+		[/#if]
+	[/#list]
+	[#if hasNext]
+		<a href="[@pattern?replace("{pageNumber}", "${nextPageNumber}")?interpret /]" class="page_next">&lt;</a>
+	[#else]
+		<a href="javascript:;" class="page_next on">&lt;</a>
+	[/#if]
+[/#if] 
+</div>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>编辑表单</title>
+[#include "/WEB-INF/admin/include/common.html"]
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>编辑表单</h5>
+            </div>
+           <form id="inputForm" action="update" method="post">
+           		<input type="hidden" name="id" value="${form.id}" />
+	            <div class="ibox-content">
+	                <div class="form-horizontal clearfix">
+	                	[#list formFields as formField]
+	                		<div class="form-group">
+		                        <label class="col-sm-3 control-label">${formField.alias}：</label>
+		                        <div class="col-sm-3">
+		                            <input placeholder="${formField.alias}" class="form-control" type="text" name="${formField.name}" value="${form.getFieldValue(formField.name)}">
+		                        </div>
+	                    	</div>
+                        [/#list]
+	                    
+	                </div>
+	            </div>
+	            <div class="modal-footer col-sm-3 col-sm-offset-2">
+	                <button type="submit" class="btn btn-w-m btn-primary">确定</button>
+	                <button type="button" class="btn btn-w-m btn-default" onclick="history.back(); return false;">取消</button>
+	            </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+$().ready(function() {
+
+	var $inputForm = $("#inputForm");
+	
+	// 表单验证
+	$inputForm.validate({
+		rules: {
+			[#assign rulesIndex=0]
+			[#list formFields as formField]
+				[#if formField.isEnabled]
+					[#if rulesIndex>0],[/#if]${formField.name}: {
+						[#if formField.isRequired && formField.pattern??]
+							required: true,
+							pattern: ${formField.pattern}
+						[#elseif formField.isRequired]
+							required: true
+						[#elseif formField.pattern]
+							pattern: ${formField.pattern}
+						[/#if]
+					}
+					[#assign rulesIndex=rulesIndex+1]
+				[/#if]
+			 [/#list]
+		},
+		messages: {
+			[#assign messagesIndex=0]
+			[#list formFields as formField]
+				[#if formField.isEnabled && formField.pattern??]
+					[#if messagesIndex>0],[/#if]${formField.name}: {
+						pattern: "${formField.alias}错误"
+					}
+					[#assign messagesIndex=formField+1]
+				[/#if]
+			 [/#list]
+		}
+	});
+
+});
+</script>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>文章列表-${siteName}</title>
+    <meta name="keywords" content="快帆工作室,KuaiFanKeJi,互联网建站平台,网站建设,网站开发,微信公众号开发,微信小程序开发,微信APP开发,webapp开发">
+    <meta name="description" content="快帆工作室,KuaiFanKeJi,互联网建站平台,网站建设,网站开发,微信公众号开发,微信小程序开发,微信APP开发,webapp开发,省时省力省心,标准化制作流程,让您建站无忧">
+    <link rel="stylesheet" type="text/css" href="${base}/templates/${config.theme}/front/front/static/css/base.min.css">
+    <link rel="stylesheet" type="text/css" href="${base}/templates/${config.theme}/front/front/static/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="${base}/templates/${config.theme}/front/front/static/css/home.css">
+</head>
+<body>
+<!-- header start -->
+[#include "/templates/${config.theme}/front/front/include/header.html" /]
+<!-- header end -->
+<div class="inbox main layout-margin unstart">
+    <div class="inbox bread-nav"><span>当前位置：</span><a href="javascript:;">商品列表</a> > </div>
+    <div class="fn-clear rmb-main-top" id="unMainTop"></div>
+    <div class="container">
+        <div class="content">
+            <div class="un-content-top" id="unContentTop"></div>
+			<div class="class-content">&nbsp;文章列表。</div>	
+            <ul class="bl-img-text list-img-text">
+            	 [#list page.list as article]
+	                <li>
+	                    <a href="${article.url}" class="ia" title="${article.title}"> <img src="${article.thumbnail}" data-original="${article.thumbnail}" rel="nofollow"/></a>
+	                    <div class="bd">
+	                        <h2 class="h"><a href="${article.url}"><b>${article.title}</b></a></h2>
+	                        <div class="des">
+	                            ${abbreviate(article.text,34,"...")}
+	                        </div>
+	                    </div>
+	                </li>
+                [/#list]
+            </ul>
+            <ul class="page-list" id='pageList'>
+            	[@pagination pageNumber = page.pageNumber totalPages = page.totalPage pattern = "javascript: $.pageSkip({pageNumber});"]
+					[#include "/templates/${config.theme}/front/front/include/pagination.html"]
+				[/@pagination]
+			</ul>
+            <div class="fn-mt20 fn-mb20 fn-cf un-article-bottom">
+                <div class="fn-fr un-article-bottom-text" id="unArticleBottomText"></div>
+                <div class="fn-ohide" id="unArticleBottom"></div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-end">
+        <div class="sidebar-box ui-box01-">
+            <div class="tit tit01"><h3 class="h">推荐文章</h3></div>
+            <div class="bd">
+                <ul class="bl-text-list text-list-02">
+                	[@article_list orderBy="hits desc"]
+                		[#list articles as article]
+		                    <li><a href="${article.url}" title="${article.title}" class="ta">${article.title}</a></li>
+                		[/#list]
+                	[/@article_list]
+                </ul>
+            </div>
+        </div>
+        <div class="sidebar-box" id="unSidebar03"></div>
+        <div class="sidebar-box ui-box01-">
+            <div class="tit tit01"><h3 class="h">热门文章</h3></div>
+            <div class="bd">
+                <ul class="bl-text-list text-list-02 text-list-mun">
+                    <li>
+                    	[@article_list orderBy="createDate desc"]
+                		[#list articles as article]
+	                        <var class="num num-1">${article_index+1}</var>
+	                        <a href="${article.url}" title="${article.title}" class="ta">${article.title}</a>
+                   		[/#list]
+                	[/@article_list]
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- footer start -->
+[#include "/templates/${config.theme}/front/front/include/footer.html" /]
+<!-- footer end -->
+</body>
+</html>

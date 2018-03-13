@@ -1,0 +1,161 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>快帆工作室-网站建设,网站开发,微信公众号开发,微信小程序开发,微信APP开发,webapp开发</title>
+    <meta name="keywords" content="快帆工作室,KuaiFanKeJi,互联网建站平台,网站建设,网站开发,微信公众号开发,微信小程序开发,微信APP开发,webapp开发">
+    <meta name="description" content="快帆工作室,KuaiFanKeJi,互联网建站平台,网站建设,网站开发,微信公众号开发,微信小程序开发,微信APP开发,webapp开发,省时省力省心,标准化制作流程,让您建站无忧">
+    <link rel="stylesheet" type="text/css" href="${base}/templates/${config.theme}/front/front/static/css/base.min.css">
+    <link rel="stylesheet" type="text/css" href="${base}/templates/${config.theme}/front/front/static/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="${base}/templates/${config.theme}/front/front/static/css/home.css">
+</head>
+<body>
+<!-- header start -->
+[#include "/templates/${config.theme}/front/front/include/header.html" /]
+<!-- header end -->
+<!-- banner start -->
+[@ad_position id = 1 /]
+<!-- banner end -->
+<div class="section-full section section-server" id="fuwu">
+    <div class="inbox">
+        <div class="head"><h2 class="section-h">我们的服务</h2></div>
+        <div class="section-des">
+           	 快帆工作室提供网站建设,网站开发,微信公众号开发,微信小程序开发,微信APP开发,webapp开发
+        </div>
+        <div class="view-data">
+            <ul class="ui-cols-5 list-c-img">
+				<li class="col">
+                    <a class="inner">
+                        <p class="img"><img src="${base}/templates/${config.theme}/front/front/static/images/wzjs.png"></p>
+                        <p class="h">网站建设</p>
+                    </a>
+                    <p class="fn-hide des">PC端网站建设、响应式网站建设、移动端网站建设</p>
+                </li>
+				<li class="col">
+                    <a class="inner">
+                        <p class="img"><img src="${base}/templates/${config.theme}/front/front/static/images/wxgzh.png"></p>
+                        <p class="h">微信公众号开发</p>
+                    </a>
+                    <p class="fn-hide des">微信公众号开发</p>
+                </li>
+                <li class="col">
+                    <a class="inner">
+                        <p class="img"><img src="${base}/templates/${config.theme}/front/front/static/images/wxxcx.png"></p>
+                        <p class="h">微信小程序开发</p>
+                    </a>
+                    <p class="fn-hide des">微信小程序开发</p>
+                </li>
+				<li class="col">
+                    <a class="inner">
+                        <p class="img"><img src="${base}/templates/${config.theme}/front/front/static/images/webapp.png"></p>
+                        <p class="h">webapp开发</p>
+                    </a>
+                    <p class="fn-hide des">webapp开发</p>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="section-full section section-case" id="anli">
+    <div class="inbox">
+        <div class="head"><h2 class="section-h">案例展示</h2></div>
+        <div class="section-des">
+          	  快帆工作室案例
+        </div>
+        <div class="view-data">
+            <ul class="fn-cf ui-cols-4 flip-list">
+            	[@goods_list]
+            		[#list goodsList as goods]
+		                <li class="col flip-3d">
+		                    <a href="javascript:;" class="inner" target="_blank">
+		                        <img src="${goods.image}">
+		                        <div class="info">
+		                            <p class="h">${goods.name}</p>
+		                            <p class="fn-vhide ename">${goods.productCategory.name}</p>
+		                            <p><span class="btn-more">查看详细</span></p>
+		                        </div>
+		                        <div class="mask"></div>
+		                    </a>
+		                    <p class="fn-hide des">${goods.name}</p>
+		                </li>
+                	[/#list]
+                [/@goods_list ]
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="section-full section section-service" id="type-001" style="min-height:340px;">
+    <div class="inbox">
+        <div class="head"><h2 class="section-h">网站建设服务流程</h2></div>
+        <div class="section-des"></div>
+
+        <div class="view-data">
+          <ul class="ui-cols-8" style="font-size:16px; color:#666;">
+              <li class="fn-tc col">
+                <p class="img"><img src="${base}/templates/${config.theme}/front/front/static/images/lc-1.png" alt="" /></p>
+                <p class="fn-mt10 h">需求调研</p>
+              </li>
+              <li class="fn-tc col">
+                <p class="img"><img src="${base}/templates/${config.theme}/front/front/static/images/lc-3.png" alt="" /></p>
+                <p class="fn-mt10 h">页面设计</p>
+              </li>
+              <li class="fn-tc col">
+                <p class="img"><img src="${base}/templates/${config.theme}/front/front/static/images/lc-4.png" alt="" /></p>
+                <p class="fn-mt10 h">前端开发</p>
+              </li>
+              <li class="fn-tc col">
+                <p class="img"><img src="${base}/templates/${config.theme}/front/front/static/images/lc-5.png" alt="" /></p>
+                <p class="fn-mt10 h">程序开发</p>
+              </li>
+              <li class="fn-tc col">
+                <p class="img"><img src="${base}/templates/${config.theme}/front/front/static/images/lc-6.png" alt="" /></p>
+                <p class="fn-mt10 h">内容编辑</p>
+              </li>
+              <li class="fn-tc col">
+                <p class="img"><img src="${base}/templates/${config.theme}/front/front/static/images/lc-7.png" alt="" /></p>
+                <p class="fn-mt10 h">网站测试</p>
+              </li>
+              <li class="fn-tc col">
+                <p class="img"><img src="${base}/templates/${config.theme}/front/front/static/images/lc-8.png" alt="" /></p>
+                <p class="fn-mt10 h">正式上线</p>
+              </li>
+              <li class="fn-tc col">
+                <p class="img"><img src="${base}/templates/${config.theme}/front/front/static/images/lc-9.png" alt="" /></p>
+                <p class="fn-mt10 h">后期维护</p>
+              </li>
+          </ul>
+        </div>
+    </div>
+</div>
+<div class="section-full section section-news">
+    <div class="inbox">
+        <div class="head"><h2 class="section-h">行业资讯</h2></div>
+        <div class="view-data time-line">
+            <div class="line"></div>
+            <ul class="list">
+            	[@article_list]
+            		[#list articles as article]
+		                <li>
+		                    <span class="time">${article.createDate?string("yyyy-MM-dd")}</span><i class="c"></i>
+		                    <h3 class="h"><a href="${article.url}">${article.title}</a></h3>
+		                    <div class="des">
+		                   		${abbreviate(article.filterContent,100,"...")}
+		                    </div>
+		                </li>
+            		[/#list]
+            	[/@article_list]
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- footer start -->
+[#include "/templates/${config.theme}/front/front/include/footer.html" /]
+<!-- footer end -->
+</body>
+</html>
+<!-- <script type="text/javascript" src="${base}/templates/${config.theme}/front/front/static/js/jquery-1.8.2.js" ></script>
+<script type="text/javascript" src="${base}/templates/${config.theme}/front/front/static/js/jquery.SuperSlide.2.1.1.js" ></script>
+<script type="text/javascript">jQuery("#focusNews").slide(); </script> -->

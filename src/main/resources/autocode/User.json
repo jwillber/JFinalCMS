@@ -1,0 +1,22 @@
+{
+    "packageName":"com.kuaifan.controller.admin",
+    "className": "User",
+    "useName":"用户管理",
+    "pathName":"user",
+    "objectName":"user",
+    "useAdd":true,
+    "useDelete":true,
+    "fields":[
+        {
+            "name":"username",
+            "title":"用户名",
+            "type":"editor",
+            "useSearch":true,
+            "useTitle":true,
+            "useList":true,
+            "isRequired":true,
+            "isDigits":false,
+            "pattern":null
+        }
+    ]
+}

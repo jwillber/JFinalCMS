@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kuaifan>
+	<config name="siteName" value="快帆工作室" />
+	<config name="siteUrl" value="http://www.kuaifankeji.com" />
+	<config name="logo" value="/upload/image/logo.png" />
+	<config name="title" value="网站建设,网站开发,微信公众号开发,微信小程序开发,微信APP开发,webapp开发" />
+	<config name="keywords" value="快帆工作室,KuaiFanKeJi,互联网建站平台,网站建设,网站开发,微信公众号开发,微信小程序开发,微信APP开发,webapp开发" />
+	<config name="description" value="快帆工作室,KuaiFanKeJi,互联网建站平台,网站建设,网站开发,微信公众号开发,微信小程序开发,微信APP开发,webapp开发,省时省力省心,标准化制作流程,让您建站无忧" />
+	<config name="theme" value="kuaifankeji" />
+	<config name="isWatermarkEnabled" value="false" />
+	<config name="watermarkAlpha" value="50" />
+	<config name="watermarkImage" value="/resources/watermark.png" />
+	<config name="watermarkPosition" value="no" />
+	<config name="categoryPageUrl" value="${catdir}_${pageNumber}.html" />
+	<config name="categoryUrl" value="${catdir}.html" />
+	<config name="contentUrl" value="${catdir}/${id}.html" />
+	<config name="siteModel" value="dynamic" />
+	<config name="isCronEnabled" value="true" />
+	<config name="uploadMaxSize" value="10" />
+	<config name="uploadImageExtension" value="jpg,jpeg,bmp,gif,png" />
+	<config name="uploadMediaExtension" value="swf,flv,mp3,wav,avi,rm,rmvb" />
+	<config name="uploadFileExtension" value="zip,rar,7z,doc,docx,xls,xlsx,ppt,pptx" />
+	<config name="imageUploadPath" value="/upload/image/${.now?string('yyyyMM')}/" />
+	<config name="mediaUploadPath" value="/upload/media/${.now?string('yyyyMM')}/" />
+	<config name="fileUploadPath" value="/upload/file/${.now?string('yyyyMM')}/" />
+	<config name="cookiePath" value="/" />
+	<config name="cookieDomain" value="" />
+</kuaifan>

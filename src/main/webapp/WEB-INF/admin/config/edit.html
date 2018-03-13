@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>系统设置</title>
+[#include "/WEB-INF/admin/include/common.html"]
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>系统设置</h5>
+            </div>
+           <form id="inputForm" action="update" method="post">
+                <div class="ibox-content">
+                    <div class="form-horizontal clearfix">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">网站名称：</label>
+                            <div class="col-sm-3">
+                                <input placeholder="名称" class="form-control" type="text" name="siteName" value="${config.siteName}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">网站网址：</label>
+                            <div class="col-sm-3">
+                                <input placeholder="名称" class="form-control" type="text" name="siteUrl" value="${config.siteUrl}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">logo：</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" name="logo" value="${config.logo}"/>
+                            </div>
+                            <div class="col-sm-3">
+                                <a href="javascript:;" class="btn btn-primary filePicker">选择文件</a>
+                                <a href="${config.logo}" target="_blank">查看</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">标题：</label>
+                            <div class="col-sm-3">
+                                <input placeholder="标题" class="form-control" type="text" name="title" value="${config.title}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">关键词：</label>
+                            <div class="col-sm-3">
+                                <input placeholder="关键词" class="form-control" type="text" name="keywords" value="${config.keywords}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">描述：</label>
+                            <div class="col-sm-3">
+                                <input placeholder="描述" class="form-control" type="text" name="description" value="${config.description}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">主题：</label>
+                            <div class="col-sm-3">
+                                <select class="form-control" name="theme">
+                                    [#list themes as theme]
+                                        <option value="${theme}" [#if theme==config.theme]selected[/#if]>${theme}</option> 
+                                    [/#list]
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">是否开启水印：</label>
+                            <div class="col-sm-3">
+                                <div class="checkbox" id="isWatermarkEnabled">
+                                   <label class="m-r"><input type="checkbox" name="isWatermarkEnabled" value="true" [#if config.isWatermarkEnabled]checked[/#if]/>&nbsp;</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">水印透明度：</label>
+                            <div class="col-sm-3">
+                                <input placeholder="" class="form-control" type="text" name="watermarkAlpha" value="${config.watermarkAlpha}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">水印图片：</label>
+                            <div class="col-sm-3">
+                                <input placeholder="" class="form-control" type="text" name="watermarkImage" value="${config.watermarkImage}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">水印位置：</label>
+                            <div class="col-sm-3">
+                                <select class="form-control" name="watermarkPosition">
+                                    [#list configWatermarkPositionNames.keySet() as key]
+                                        <option value="${key}" [#if key==config.watermarkPosition]selected[/#if]>${configWatermarkPositionNames.get(key)}</option>
+                                    [/#list]
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">网站模式：</label>
+                            <div class="col-sm-3">
+                                <div class="radio" id="siteModel">
+                                     [#list configSiteModelNames.keyList() as key]
+                                       <label class="m-r"><input name="siteModel" value="${key}" type="radio" [#if key==config.siteModel]checked[/#if]>${configSiteModelNames.get(key)}</label>
+                                    [/#list]
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">栏目分页url：</label>
+                            <div class="col-sm-3">
+                                <input placeholder="标题" class="form-control" type="text" name="categoryPageUrl" value="${config.categoryPageUrl}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">栏目url：</label>
+                            <div class="col-sm-3">
+                                <input placeholder="标题" class="form-control" type="text" name="categoryUrl" value="${config.categoryUrl}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">内容url：</label>
+                            <div class="col-sm-3">
+                                <input placeholder="标题" class="form-control" type="text" name="contentUrl" value="${config.contentUrl}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">是否定时任务：</label>
+                            <div class="col-sm-3">
+                                <div class="checkbox">
+                                    <label class="m-r"><input type="checkbox" name="isCronEnabled" value="true" [#if config.isCronEnabled]checked[/#if]/>&nbsp;</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">上传文件最大限制：</label>
+                            <div class="col-sm-3">
+                               <input placeholder="单位: MB，0表示无限制" class="form-control" type="text" name="uploadMaxSize" value="${config.uploadMaxSize}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">允许上传图片扩展名：</label>
+                            <div class="col-sm-3">
+                               <input placeholder="多个扩展名以(,)分隔，留空表示不允许上传" class="form-control" type="text" name="uploadImageExtension" value="${config.uploadImageExtension}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">允许上传媒体扩展名：</label>
+                            <div class="col-sm-3">
+                               <input placeholder="多个扩展名以(,)分隔，留空表示不允许上传" class="form-control" type="text" name="uploadMediaExtension" value="${config.uploadMediaExtension}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">允许上传文件扩展名：</label>
+                            <div class="col-sm-3">
+                               <input placeholder="多个扩展名以(,)分隔，留空表示不允许上传" class="form-control" type="text" name="uploadFileExtension" value="${config.uploadFileExtension}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">图片上传路径：</label>
+                            <div class="col-sm-3">
+                               <input placeholder="图片上传路径" class="form-control" type="text" name="imageUploadPath" value="${config.imageUploadPath}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">媒体上传路径：</label>
+                            <div class="col-sm-3">
+                               <input placeholder="媒体上传路径" class="form-control" type="text" name="mediaUploadPath" value="${config.mediaUploadPath}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">文件上传路径：</label>
+                            <div class="col-sm-3">
+                               <input placeholder="文件上传路径" class="form-control" type="text" name="fileUploadPath" value="${config.fileUploadPath}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Cookie路径：</label>
+                            <div class="col-sm-3">
+                               <input placeholder="Cookie路径" class="form-control" type="text" name="cookiePath" value="${config.cookiePath}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Cookie作用域：</label>
+                            <div class="col-sm-3">
+                               <input placeholder="Cookie作用域" class="form-control" type="text" name="cookieDomain" value="${config.cookieDomain}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer col-sm-3 col-sm-offset-2">
+                    <button type="submit" class="btn btn-w-m btn-primary">确定</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+$().ready(function() {
+    $.each($(".filePicker"),function(index,item){
+        $(item).uploader();
+    });
+});
+</script>
+
+

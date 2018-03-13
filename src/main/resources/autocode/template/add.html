@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>添加${useName}</title>
+${r'[#include "/WEB-INF/admin/include/common.html"]'}
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>添加${useName}</h5>
+            </div>
+           <form id="inputForm" action="save" method="post">
+	            <div class="ibox-content">
+	                <div class="form-horizontal clearfix">
+	                	[#list fields as field]
+               			<div class="form-group">
+	                        <label class="col-sm-3 control-label">${field.title}：</label>
+	                		[#if field.type=="text"]
+	                        <div class="col-sm-3">
+	                            <input placeholder="${field.title}" class="form-control" type="text" name="${field.name}">
+	                        </div>
+	                		[/#if]
+	                		[#if field.type=="textarea"]
+                            <div class="col-sm-8">
+                                <textarea class="form-control" style="height: 250px;" name="${field.name}"></textarea>
+                            </div>
+                            [/#if]
+	                		[#if field.type=="select"]
+                			<div class="col-sm-3">
+	                           <select class="form-control" name="${field.name}">
+	                            </select>
+	                        </div>
+	                		[/#if]
+	                		[#if field.type=="editor"]
+	                		<div class="col-sm-8">
+	                           <textarea id="${field.name}" name="${field.name}" class="ibox-content no-padding" style="height: 250px;"></textarea>
+	                        </div>
+	                		[/#if]
+	                		[#if field.type=="file"]
+	                		<div class="col-sm-3">
+	                            <input type="text" id="${field.name}" name="${field.name}" class="form-control" disabled="disabled" />
+	                        </div>
+	                        <div class="col-sm-3">
+								<a href="javascript:;" id="filePicker" class="btn btn-primary">选择文件</a>
+	                        </div>
+	                		[/#if]
+	                		[#if field.type=="radio"]
+                			<div class="col-sm-3">
+	                            <div class="radio">
+	                            </div>
+	                        </div>
+	                		[/#if]
+	                    </div>
+	                	[/#list]
+	                </div>
+	            </div>
+	            <div class="modal-footer col-sm-3 col-sm-offset-2">
+	                <button type="submit" class="btn btn-w-m btn-primary">确定</button>
+	                <button type="button" class="btn btn-w-m btn-default" onclick="history.back(); return false;">取消</button>
+	            </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+$().ready(function() {
+
+	var $inputForm = $("#inputForm");
+	
+	[#list fields as field]
+	[#if field.type=="editor"]
+	var ${r'$'}${field.name} = ${r'$'}("#${field.name}");
+	${r'$'}${field.name}.editor();
+	[/#if]
+	[#if field.type=="file"]
+	var $filePicker = $("#filePicker");
+	$filePicker.uploader();
+	[/#if]
+	[/#list]
+		
+    // 表单验证
+    $inputForm.validate({
+        rules: {
+        	[#list fields as field]
+        	[#if field.isRequired?? && field.isRequired]
+            [#if field.pattern??]
+            ${field.name}: {
+		        required: true,
+		        pattern: ${field.pattern}
+		    }
+            [#else]
+		    ${field.name}: "required"        
+            [/#if]
+        	[#else]
+        	[#if field.isDigits?? && field.isDigits]
+        	${field.name}: "digits"
+        	[/#if]
+        	[/#if]
+       		[#if field_has_next],[/#if]
+        	[/#list]
+        }
+    });	
+});
+</script>

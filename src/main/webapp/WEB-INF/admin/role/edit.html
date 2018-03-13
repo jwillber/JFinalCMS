@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>编辑角色</title>
+[#include "/WEB-INF/admin/include/common.html"]
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>编辑角色</h5>
+            </div>
+           <form id="inputForm" action="update" method="post">
+           		<input type="hidden" name="id" value="${role.id}">
+	            <div class="ibox-content">
+	                <div class="form-horizontal clearfix">
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">名称：</label>
+	                        <div class="col-sm-3">
+	                            <input placeholder="名称" class="form-control" type="text" name="name" value="${role.name}">
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">描述：</label>
+	                        <div class="col-sm-3">
+	                            <input placeholder="描述" class="form-control" type="text" name="description" value="${role.description}">
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label"><a href="javascript:;" class="selectAll" title="全选此组权限">模型管理：</a></label>
+	                        <div class="col-sm-3">
+	                        	 <div class="checkbox">
+	                           		<label class="m-r">
+										<input class="checkbox" type="checkbox" name="permissions" value="/admin/category" [#if role.permissions?seq_contains("/admin/category")] checked="checked"[/#if]/>栏目
+									</label>
+									<label class="m-r">
+										<input class="checkbox" type="checkbox" name="permissions" value="/admin/content_model" [#if role.permissions?seq_contains("/admin/content_model")] checked="checked"[/#if]/>内容模型
+									</label>
+									<label class="m-r">
+										<input class="checkbox" type="checkbox" name="permissions" value="/admin/form_model" [#if role.permissions?seq_contains("/admin/form_model")] checked="checked"[/#if]/>表单模型
+									</label>
+								</div>
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label"><a href="javascript:;" class="selectAll" title="全选此组权限">内容管理：</a></label>
+	                        <div class="col-sm-3">
+	                        	 <div class="checkbox">
+	                           		<label class="m-r">
+										<input class="checkbox" type="checkbox" name="permissions" value="/admin/content" [#if role.permissions?seq_contains("/admin/content")] checked="checked"[/#if]/>内容管理
+									</label>
+								</div>
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label"><a href="javascript:;" class="selectAll" title="全选此组权限">表单管理：</a></label>
+	                        <div class="col-sm-3">
+	                        	 <div class="checkbox">
+	                           		<label class="m-r">
+										<input class="checkbox" type="checkbox" name="permissions" value="/admin/form" [#if role.permissions?seq_contains("/admin/form")] checked="checked"[/#if]/>表单管理
+									</label>
+								</div>
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label"><a href="javascript:;" class="selectAll" title="全选此组权限">营销管理：</a></label>
+	                        <div class="col-sm-3">
+	                        	 <div class="checkbox">
+	                           		<label class="m-r">
+										<input class="checkbox" type="checkbox" name="permissions" value="/admin/ad" [#if role.permissions?seq_contains("/admin/ad")] checked="checked"[/#if]/>广告
+									</label>
+									<label class="m-r">
+										<input class="checkbox" type="checkbox" name="permissions" value="/admin/ad_position" [#if role.permissions?seq_contains("/admin/ad_position")] checked="checked"[/#if]/>广告位
+									</label>
+									<label class="m-r">
+										<input class="checkbox" type="checkbox" name="permissions" value="/admin/friend_link" [#if role.permissions?seq_contains("/admin/friend_link")] checked="checked"[/#if]/>友情链接
+									</label>
+								</div>
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label"><a href="javascript:;" class="selectAll" title="全选此组权限">系统管理：</a></label>
+	                        <div class="col-sm-8">
+	                        	 <div class="checkbox">
+	                           		<label class="m-r">
+										<input class="checkbox" type="checkbox" name="permissions" value="/admin/role" [#if role.permissions?seq_contains("/admin/role")] checked="checked"[/#if]/>角色
+									</label>
+									<label class="m-r">
+										<input class="checkbox" type="checkbox" name="permissions" value="/admin/admin" [#if role.permissions?seq_contains("/admin/admin")] checked="checked"[/#if]/>管理员
+									</label>
+									<label class="m-r">
+										<input class="checkbox" type="checkbox" name="permissions" value="/admin/storage_plugin" [#if role.permissions?seq_contains("/admin/storage_plugin")] checked="checked"[/#if]/>存储插件
+									</label>
+									<label class="m-r">
+										<input class="checkbox" type="checkbox" name="permissions" value="/admin/area" [#if role.permissions?seq_contains("/admin/area")] checked="checked"[/#if]/>地区
+									</label>
+									<label class="m-r">
+										<input class="checkbox" type="checkbox" name="permissions" value="/admin/setting" [#if role.permissions?seq_contains("/admin/setting")] checked="checked"[/#if]/>设置
+									</label>
+									<label class="m-r">
+										<input class="checkbox" type="checkbox" name="permissions" value="/admin/template" [#if role.permissions?seq_contains("/admin/template")] checked="checked"[/#if]/>模板
+									</label>
+									<label class="m-r">
+										<input class="checkbox" type="checkbox" name="permissions" value="/admin/cache" [#if role.permissions?seq_contains("/admin/cache")] checked="checked"[/#if]/>清除缓存
+									</label>
+									<label class="m-r">
+										<input class="checkbox" type="checkbox" name="permissions" value="/admin/static" [#if role.permissions?seq_contains("/admin/static")] checked="checked"[/#if]/>生成静态
+									</label>
+									<label class="m-r">
+										<input class="checkbox" type="checkbox" name="permissions" value="/admin/sitemap" [#if role.permissions?seq_contains("/admin/sitemap")] checked="checked"[/#if]/>生成sitemap
+									</label>
+									<label class="m-r">
+                                        <input class="checkbox" type="checkbox" name="permissions" value="/admin/profile" [#if role.permissions?seq_contains("/admin/profile")] checked="checked"[/#if]/>账号设置
+                                    </label>
+								</div>
+	                        </div>
+	                    </div>
+	                    [#if role.isSystem]
+	                    <div class="form-group">
+                            <label class="col-sm-3 control-label">&nbsp;</label>
+                            <div class="col-sm-8">
+                               <h4 class="text-danger">系统内置角色不允许修改</h4>
+                            </div>
+                        </div>
+	                    [/#if]
+	                </div>
+	            </div>
+	            <div class="modal-footer col-sm-3 col-sm-offset-2">
+	                <button type="submit" class="btn btn-w-m btn-primary" [#if role.isSystem] disabled="disabled"[/#if]>确定</button>
+	                <button type="button" class="btn btn-w-m btn-default" onclick="history.back(); return false;">取消</button>
+	            </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+$().ready(function() {
+
+	var $inputForm = $("#inputForm");
+	var $selectAll = $("#inputForm .selectAll");
+	
+	
+	
+	$selectAll.click(function() {
+		var $this = $(this);
+		var $thisCheckbox = $this.closest("div").find("input:checkbox");
+		if ($thisCheckbox.filter(":checked").size() > 0) {
+			$thisCheckbox.prop("checked", false);
+		} else {
+			$thisCheckbox.prop("checked", true);
+		}
+		return false;
+	});
+	
+	// 表单验证
+	$inputForm.validate({
+		rules: {
+			name: "required",
+			permissions: "required"
+		}
+	});
+
+});
+</script>

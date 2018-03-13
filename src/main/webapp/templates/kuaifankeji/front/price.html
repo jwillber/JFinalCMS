@@ -1,0 +1,153 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="${config.description}">
+  <meta name="keywords" content="${config.keywords}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>价格-${config.siteName}</title>
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <link rel="icon" type="image/png" href="${config.siteUrl}/favicon.ico">
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="${config.siteUrl}/favicon.ico">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <link rel="apple-touch-icon-precomposed" href="${config.siteUrl}/favicon.ico">
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="${config.siteUrl}/favicon.ico">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+  <link rel="stylesheet" href="${base}/templates/${config.theme}/front/static/css/amazeui.min.css">
+  <link rel="stylesheet" href="${base}/templates/${config.theme}/front/static/css/style.css">
+  <!--[if (gte IE 9)|!(IE)]><!-->
+  <script src="${base}/templates/${config.theme}/front/static/js/jquery.min.js"></script>
+  <script src="${base}/templates/${config.theme}/front/static/js/jquery.sliphover.min.js"></script>
+  <!--<![endif]-->
+  <script src="${base}/templates/${config.theme}/front/static/js/jquery.SuperSlide.2.1.2.js"></script>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，${config.siteName} 暂不支持。 请使用Chrome谷歌浏览器访问本站或至 <a
+  href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+<!--主体-->
+<!--头部开始-->
+[#include "/templates/${config.theme}/front/header.html" /]
+<!--头部结束-->
+<!--轮播开始-->
+[#include "/templates/${config.theme}/front/banner.html" /]
+ <!--轮播结束-->
+ <div class="nav-bg" data-am-scrollspy-nav="{offsetTop: 45}" data-am-sticky>
+ 	<div class="am-container">
+ 		<nav>
+		  <ul>
+		    <li><a href="#vhost1">服务范围</a></li>
+		    <li><a href="#vhost2">产品优势</a></li>
+		    <li><a href="#vhost3">常见问题</a></li>
+		  </ul>
+		</nav>
+ 	</div>
+ </div>
+ <section id="vhost1" class="vhost_list">
+ 	<div class="am-container">
+ 		<h1 class="am-text-center">服务范围</h1>
+ 	<p class="sub-header am-text-center">支持定制开发,提供源代码,安全有保障</p>
+  <ul class="am-avg-sm-5 price-block">
+  <li>
+  	<section class="am-panel am-panel-primary am-text-center">
+  <header class="am-panel-hd">
+    <h3 class="am-panel-title am-text-center">企业建站</h3>
+  </header>
+  <div class="am-panel-bd">
+  	<dl>
+  		<dt>2000<small>元</small></dt>
+  		<dd>前台地址：http://cms.kuaifankeji.com</dd>
+  		<dd>后台地址：http://cms.kuaifankeji.com/admin/login</dd>
+  		<dd>后台账号：admin</dd>
+  		<dd>后台密码：123456</dd>
+  	</dl>
+  	<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=f48c49cc36c4a55fb75539002a4ea0bfae8657f33a749870afaa5eb05537177f" class="am-btn am-btn-secondary am-btn-block">立即咨询</a>
+  </div>
+</section>
+  </li>
+  
+  <li>
+  	<section class="am-panel am-panel-primary am-text-center">
+  <header class="am-panel-hd">
+    <h3 class="am-panel-title am-text-center">B2C商城</h3>
+  </header>
+  <div class="am-panel-bd">
+  	<dl>
+  		<dt>5000<small>元</small></dt>
+  		<dd>前台地址：http://b2c.kuaifankeji.com</dd>
+  		<dd>后台地址：http://b2c.kuaifankeji.com/admin/login</dd>
+  		<dd>后台账号：admin</dd>
+  		<dd>后台密码：123456</dd>
+  	</dl>
+  	<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=f48c49cc36c4a55fb75539002a4ea0bfae8657f33a749870afaa5eb05537177f" class="am-btn am-btn-secondary am-btn-block">立即咨询</a>
+  </div>
+</section>
+  </li>
+  
+</ul>
+</div>
+ </section>
+ 
+ <section id="vhost2" class="about-main am-text-center">
+ 	<div class=""><h1>产品优势</h1><span>更少的维护时间, 更稳定的性能和更完美的在线率. 强大的售后支持,省时、省钱、省心。</span></div>
+ 	<div class="am-g am-g-fixed strengths">
+  <div class="am-u-sm-4">
+  	<img class="" src="${base}/templates/${config.theme}/front/static/images/rocket.png"/>
+  	<h3>超高的性价比</h3>
+  	<p>日本东京和美国弗里蒙特机房任选，无需繁琐备案，国内PING延迟低，线路稳定，完爆美国主机，堪比国内主机。严格控制每台服务器网站数量，保证运行性能。</p>
+  </div>
+  <div class="am-u-sm-4">
+  	<img class="" src="${base}/templates/${config.theme}/front/static/images/cpanel.png"/>
+  	<h3>友好的中文控制面板</h3>
+  	<p>提供全中文虚拟主机控制面板，支持主流cms、论坛、商城等各种php程序运行，方便易用，完全自主管理，赋予丰富充分的管理权限，并提供在线技术支持。</p>
+  </div>
+  <div class="am-u-sm-4">
+  	<img class="" src="${base}/templates/${config.theme}/front/static/images/services.png"/>
+  	<h3>随时退款保证</h3>
+  	<p>在使用过程中无论您因为何种原因需要退款，我们都将按总金额减去已使用天数费用后的余款无条件退款（如使用未满3个月按3个月计算）。彻底解决您的后顾之忧。</p>
+  </div>
+</div>
+ </section>
+ 
+ <section id="vhost3" class="about-main">
+ 	<div class="am-text-center"><h1>常见问题</h1><span>您可以通过如下方式与我们联系，QQ在线即回，邮件24小时内回复，电话接待时间：早上9:00-下午17:00</span></div>
+ 	<div class="am-g project_con">
+  <div class="am-u-sm-9 am-u-sm-centered">
+  	<dl>
+  		<dt>问：？</dt>
+  		<dd>答：。</dd>
+  		<dt>问：？</dt>
+  		<dd>答：。</dd>
+  		<dt>问：？</dt>
+  		<dd>答：。</dd>
+  	</dl>
+  	<hr/>
+  </div>
+</div>
+ </section>
+  <!--联系我们开始-->
+[#include "/templates/${config.theme}/front/contactus.html" /]
+   <!--联系我们结束-->
+<!--底部开始-->
+[#include "/templates/${config.theme}/front/footer.html" /]
+<!--底部结束-->
+<!--End HE -->
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="${base}/templates/${config.theme}/front/static/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="${base}/templates/${config.theme}/front/static/js/amazeui.min.js"></script>
+<!-- 主体End -->
+</body>
+</html>

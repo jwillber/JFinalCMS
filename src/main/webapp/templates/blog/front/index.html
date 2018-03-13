@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>文章</title>
+<link rel="stylesheet" id="style-css"  href="${base}/templates/${config.theme}/front/static/css/style.css" type="text/css" media="all" />
+</head>
+<body class="home blog">
+	<!-- header start -->
+	[#include "/templates/${config.theme}/front/header.html" /]
+	<!-- header end -->
+	<section class="container">
+		<div class="content-wrap">
+			<div class="content">
+				<div class="sticky">
+					<h2 class="title">置顶推荐</h2>
+					<ul> 
+						[@content_list count=2 orderBy="hits desc"]
+							[#list contents as content]
+								<li class="item"><a href="${content.path}"><img src="${content.image}" alt="${content.title}" /><h3>${content.title}</h3><p class="muted">${abbreviate(content.text, 100, "...")}</p></a></li>
+							[/#list]
+						[/@content_list]   
+					</ul>
+ 				</div>
+ 				<h2 class="title">最新发布</h2>
+ 				[@content_list count=10 orderBy="createDate desc"]
+ 					[#list contents as content]
+					<article class="excerpt">
+						<div class="focus"><a href="${content.path}" class="thumbnail"><img src="${content.image}" alt="${content.title}" /></a></div>
+						<header>
+							<a class="label label-important" href="${content.category.path}">${content.category.name}<i class="label-arrow"></i></a>		
+							<h2><a href="${content.path}" title="${content.title}">${content.title}</a></h2>
+						</header>
+						<p>
+							<!-- <span class="muted"><i class="icon-user icon12"></i>${config.siteName}</span>
+							<span class="muted"><i class="icon-time icon12"></i>${content.createDate?string("MM-dd")}</span>
+							<span class="muted"><i class="icon-eye-open icon12"></i>100浏览</span>
+	        				<span class="muted"><i class="icon-comment icon12"></i><a href="${content.path}#comments">1评论</a></span> -->
+	        			</p>
+						<p class="note">${abbreviate(content.text, 200, "...")}</p>
+					</article>
+					[/#list]
+				[/@content_list]   
+			</div>
+		</div>
+		<aside class="sidebar">	
+			<div class="widget d_postlist">
+				<h3 class="widget_tit">推荐文章</h3>
+				<ul>
+					[@content_list count=2 orderBy="hits desc"]
+						[#list contents as content]
+      						<li><a href="${content.path}"><span class="thumbnail"><img src="${content.image}" alt="${content.title}"></span><span class="text">${content.title}</span><!-- <span class="muted">${content.createDate?string("yyyy-MM-dd")}</span><span class="muted">1条评论</span> --></a></li>
+      					[/#list]
+					[/@content_list]   
+      			</ul>
+      		</div>
+			<!-- <div class="widget d_comment">
+				<h3 class="widget_tit">最新评论</h3>
+				<ul>
+					[@form_list]
+						[#list forms as form]
+							<li><a href="javascript:;" title="${form.getFieldValue('name')}"><img alt="" src="" class="avatar avatar-36 photo" height="36" width="36" /><strong>${form.getFieldValue('name')}：</strong>${form.getFieldValue('content')}</a></li>
+						[/#list]
+					[/@form_list]   
+				</ul>
+			</div> -->
+			<div class="widget d_postlist">
+				<h3 class="widget_tit">热门文章</h3>
+				<ul>
+					[@content_list count=2 orderBy="hits desc"]
+						[#list contents as content]
+		     	 			<li><a href="${content.path}"><span class="thumbnail"><img src="${content.image}" alt="${content.title}" /></span><span class="text">${content.title}</span><!-- <span class="muted">${content.createDate?string("yyyy-MM-dd")}</span><span class="muted">202次阅读</span> --></a></li>
+						[/#list]
+					[/@content_list]   
+				</ul>
+			</div>
+		</aside>
+	</section>
+	<!-- footer start -->
+	[#include "/templates/${config.theme}/front/footer.html" /]
+	<!-- footer end -->
+</body>
+</html>
+			

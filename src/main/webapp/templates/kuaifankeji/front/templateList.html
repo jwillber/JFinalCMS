@@ -1,0 +1,93 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="${config.description}">
+  <meta name="keywords" content="${config.keywords}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${currentCategory.name}-${config.siteName}</title>
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <link rel="icon" type="image/png" href="${config.siteUrl}/favicon.ico">
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="${config.siteUrl}/favicon.ico">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <link rel="apple-touch-icon-precomposed" href="${config.siteUrl}/favicon.ico">
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="${config.siteUrl}/favicon.ico">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+  <link rel="stylesheet" href="${base}/templates/${config.theme}/front/static/css/amazeui.min.css">
+  <link rel="stylesheet" href="${base}/templates/${config.theme}/front/static/css/style.css">
+  <!--[if (gte IE 9)|!(IE)]><!-->
+  <script src="${base}/templates/${config.theme}/front/static/js/jquery.min.js"></script>
+  <script src="${base}/templates/${config.theme}/front/static/js/jquery.sliphover.min.js"></script>
+  <!--<![endif]-->
+  <script src="${base}/templates/${config.theme}/front/static/js/jquery.SuperSlide.2.1.2.js"></script>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，${config.siteName} 暂不支持。 请使用Chrome谷歌浏览器访问本站或至 <a
+  href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+<!--主体-->
+<!--头部开始-->
+[#include "/templates/${config.theme}/front/header.html" /]
+<!--头部结束-->
+<!--轮播开始-->
+[#include "/templates/${config.theme}/front/banner.html" /]
+ <!--轮播结束-->
+ 
+ <div class="nav-bg">
+ 	<div class="am-container">
+ 		<nav>
+  <ul>
+  [@category id = 2]
+  	<li><a [#if currentCategory.id==category.id]class="am-active"[/#if] href="${category.path}">全部</a></li>
+  [/@category]
+		[@category_children_list categoryId=2]
+				[#list categories as category]
+					<li> <a href="${category.path}" [#if currentCategory.id==category.id]class="am-active"[/#if]>${category.name}<!-- <span class="am-fr">（15）</span> --></a></li>
+				[/#list]
+			[/@category_children_list]
+  </ul>
+</nav>
+ 	</div>
+ </div>
+ 
+ <section id="about1" class="bloglist">
+ <div class="am-container">
+ 	<ul class="am-avg-sm-2 am-avg-md-3">
+  [#list page.list as content]
+  <li>
+  	<a href="${content.getAttribute('url')}" target="_blank"><img class="am-img-responsive" src="${content.image}"/></a>
+  	<div class="blogs_con">
+  	<h3><a href="${content.getAttribute('url')}" title="${content.title}" target="_blank">${content.title}</a></h3>
+  	<span class="from">${content.createDate}</span>
+  	</div>
+  </li>
+  [/#list]
+</ul>
+</div>
+ </section>
+  <!--联系我们开始-->
+[#include "/templates/${config.theme}/front/contactus.html" /]
+   <!--联系我们结束-->
+<!--底部开始-->
+[#include "/templates/${config.theme}/front/footer.html" /]
+<!--底部结束-->
+<!--End HE -->
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="${base}/templates/${config.theme}/front/static/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="${base}/templates/${config.theme}/front/static/js/amazeui.min.js"></script>
+<!-- 主体End -->
+</body>
+</html>

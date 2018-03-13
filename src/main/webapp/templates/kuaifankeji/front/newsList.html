@@ -1,0 +1,108 @@
+
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="${config.description}">
+  <meta name="keywords" content="${config.keywords}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${currentCategory.name}-${config.siteName}</title>
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <link rel="icon" type="image/png" href="${config.siteUrl}/favicon.ico">
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="${config.siteUrl}/favicon.ico">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <link rel="apple-touch-icon-precomposed" href="${config.siteUrl}/favicon.ico">
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="${config.siteUrl}/favicon.ico">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+  <link rel="stylesheet" href="${base}/templates/${config.theme}/front/static/css/amazeui.min.css">
+  <link rel="stylesheet" href="${base}/templates/${config.theme}/front/static/css/style.css">
+  <!--[if (gte IE 9)|!(IE)]><!-->
+  <script src="${base}/templates/${config.theme}/front/static/js/jquery.min.js"></script>
+	<!--<![endif]-->
+	<script src="${base}/templates/${config.theme}/front/static/js/jquery.SuperSlide.2.1.2.js"></script>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，${config.siteName} 暂不支持。 请使用Chrome谷歌浏览器访问本站或至 <a
+  href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+<!--主体-->
+<!--头部开始-->
+[#include "/templates/${config.theme}/front/header.html" /]
+<!--头部结束-->
+<!--轮播开始-->
+[#include "/templates/${config.theme}/front/banner.html" /]
+ <!--轮播结束-->
+  <!--导航开始-->
+ <div class="points">
+ 	<div class="am-container">你也想拥有一个像下面的案例中那样的一个网站吗？那就和我们联系吧 <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=644080923&site=qq&menu=yes" class="am-icon-qq"> 点击联系</a>
+ 		<div class="am-fr"> <span class="am-icon-home"></span> <a href="${base}/">首页</a>&nbsp;>&nbsp;<a href="${currentCategory.path}">${currentCategory.name}</a>  </div>
+ 	</div>
+ </div>
+   <!--导航结束-->
+      <!--列表开始-->
+ <section class="newslist">
+<div class="am-g am-g-fixed">
+	 <div class="am-u-sm-12 am-u-md-9">
+  <ul class="newslist-box">
+  	[#list page.list as content]
+	<li data-am-scrollspy="{animation:'fade',repeat: false}">
+  		<div class="pic"><a href="${content.path}"><img src="${content.image}" width="250" height="165"/></a>
+  		</div>
+  		<div class="title">
+  			<h1><a href="${content.path}">${content.title}</a></h1>
+  			<p class="from"><time>${content.createDate?string("yyyy-MM-dd")}</time> <span>来源：${config.siteName}</span></p>
+  			<p class="desc"> ${abbreviate(content.text,128,"...")}</p>
+  		</div>
+  	</li>
+	 [/#list]
+  </ul>
+<div class="page">
+	[@pagination pageNumber = page.pageNumber totalPages = page.totalPage pattern = ""]
+		[#include "/templates/${config.theme}/front/pagination.html"]
+	[/@pagination]
+</div>
+</div>
+<div class="am-u-sm-12 am-u-md-3">
+	<div class="sidebar-widget mb40">
+		<h2><span class="am-icon-list-ul">新闻分类</span></h2>
+		<ul class="sidebar-categories am-list">
+			[@category_children_list categoryId=32]
+				[#list categories as category]
+					<li><a href="${category.path}">${category.name}<!-- <span class="am-fr">（15）</span> --></a></li>
+				[/#list]
+			[/@category_children_list]
+		</ul>
+	</div>
+		<!--服务开始-->
+		[#include "/templates/${config.theme}/front/service.html" /]
+	<!--服务结束-->
+</div>
+</div>
+ </section>
+     <!--列表结束-->
+  <!--联系我们开始-->
+[#include "/templates/${config.theme}/front/contactus.html" /]
+   <!--联系我们结束-->
+<!--底部开始-->
+[#include "/templates/${config.theme}/front/footer.html" /]
+<!--底部结束-->
+<!--End HE -->
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="${base}/templates/${config.theme}/front/static/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="${base}/templates/${config.theme}/front/static/js/amazeui.min.js"></script>
+<!-- 主体End -->
+</body>
+</html>

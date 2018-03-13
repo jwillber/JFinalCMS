@@ -1,0 +1,91 @@
+/*
+ * 
+ * 
+ * 
+ */
+package com.cms.controller.admin;
+
+import java.util.Date;
+import org.apache.commons.lang.ArrayUtils;
+import com.cms.CommonAttribute;
+import com.cms.Feedback;
+import com.cms.entity.${className};
+import com.cms.interceptor.AdminInterceptor;
+import com.cms.routes.RouteMapping;
+import com.jfinal.aop.Before;
+
+
+/**
+ * Controller - ${useName}
+ * 
+ * 
+ * 
+ */
+@RouteMapping(url = "/admin/${pathName}")
+@Before({AdminInterceptor.class})
+public class ${className}Controller extends BaseController {
+
+
+	/**
+	 * 添加
+	 */
+	public void add() {
+	   render(getView("${pathName}/add"));
+	}
+
+	/**
+	 * 保存
+	 */
+	public void save() {
+		${className} ${objectName} = getModel(${className}.class,"",true); 
+		${objectName}.setCreateDate(new Date());
+		${objectName}.setModifyDate(new Date());
+		${objectName}.save();
+		redirect(getListQuery("/admin/${pathName}/list"));
+	}
+
+	/**
+	 * 编辑
+	 */
+	public void edit() {
+		Long id = getParaToLong("id");
+		setAttr("${objectName}", ${className}.dao.findById(id));
+		render(getView("${pathName}/edit"));
+	}
+
+	/**
+	 * 更新
+	 */
+	public void update() {
+		${className} ${objectName} = getModel(${className}.class,"",true); 
+		${objectName}.setModifyDate(new Date());
+		${objectName}.update();
+		redirect(getListQuery("/admin/${pathName}/list"));
+	}
+
+	/**
+	 * 列表
+	 */
+	public void list() {
+		Integer pageNumber = getParaToInt("pageNumber");
+		if(pageNumber==null){
+			pageNumber = 1;
+		}
+		setAttr("page", ${className}.dao.findPage(pageNumber,PAGE_SIZE));
+		render(getView("${pathName}/list"));
+	}
+
+	/**
+	 * 删除
+	 */
+	public void delete() {
+		Long ids[] = getParaValuesToLong("ids");
+		if(ArrayUtils.isNotEmpty(ids)){
+			for(Long id:ids){
+				${className}.dao.deleteById(id);
+			}
+		}
+		renderJson(SUCCESS_FEEDBACK);
+	}
+
+}

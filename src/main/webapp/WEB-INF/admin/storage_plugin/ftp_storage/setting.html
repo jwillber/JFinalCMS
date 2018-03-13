@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>FTP设置</title>
+[#include "/WEB-INF/admin/include/common.html"]
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>FTP设置</h5>
+            </div>
+           <form id="inputForm" action="update" method="post">
+                <input type="hidden" name="id" value="${storagePlugin.id}">
+	            <div class="ibox-content">
+	                <div class="form-horizontal clearfix">
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">FTP主机：</label>
+	                        <div class="col-sm-3">
+	                            <input placeholder="名称" class="form-control" type="text" name="host" value="${storagePlugin.getAttribute("host")}">
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">FTP端口：</label>
+	                        <div class="col-sm-3">
+	                            <input placeholder="名称" class="form-control" type="text" name="port" value="${storagePlugin.getAttribute("port")}">
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">用户名：</label>
+	                        <div class="col-sm-3">
+	                            <input placeholder="名称" class="form-control" type="text" name="username" value="${storagePlugin.getAttribute("username")}">
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">密码：</label>
+	                        <div class="col-sm-3">
+	                            <input placeholder="名称" class="form-control" type="text" name="password" value="${storagePlugin.getAttribute("password")}">
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">URL前缀：</label>
+	                        <div class="col-sm-3">
+	                            <input placeholder="名称" class="form-control" type="text" name="urlPrefix" value="${storagePlugin.getAttribute("urlPrefix")}">
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">排序：</label>
+	                        <div class="col-sm-3">
+	                            <input placeholder="名称" class="form-control" type="text" name="sort" value="${storagePlugin.sort}">
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">设置：</label>
+	                        <div class="col-sm-3">
+	                            <div class="checkbox">
+	                               <label class="m-r"><input type="checkbox" name="isEnabled" value="true" [#if storagePlugin.isEnabled] checked[/#if]/>启用</label>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="modal-footer col-sm-3 col-sm-offset-2">
+	                <button type="submit" class="btn btn-w-m btn-primary">确定</button>
+	                <button type="button" class="btn btn-w-m btn-default" onclick="history.back(); return false;">取消</button>
+	            </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+$().ready(function() {
+
+	var $inputForm = $("#inputForm");
+	
+	
+	
+	// 表单验证
+	$inputForm.validate({
+		rules: {
+			host: "required",
+			port: {
+				required: true,
+				digits: true
+			},
+			username: "required",
+			urlPrefix: "required",
+			sort: "digits"
+		}
+	});
+	
+});
+</script>

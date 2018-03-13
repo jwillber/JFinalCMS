@@ -1,0 +1,38 @@
+﻿<footer class="footer">
+	<div class="am-g am-g-fixed am-hide-sm con">
+		  <div class="am-u-sm-7">
+		  	<dl>
+			  	<dt><h4 class="title">关于我们 <small>ABOUT</small></h4></dt>
+			  	[@category id =1]<dd><a href="${category.path}">案例</a> <small>CASE</small></dd>[/@category]
+				[@category id =2]<dd><a href="${category.path}">模板</a> <small>TEMPLATE</small></dd>[/@category]
+			  	[@category id =32]<dd><a href="${category.path}">新闻</a> <small>NEWS</small></dd>[/@category]
+				[@category id =33]<dd><a href="${category.path}">关于</a> <small>ABOUT</small></dd>[/@category]
+			</dl>
+			<dl>
+			  	<dt><h4 class="title">客户案例</h4></dt>
+			  	[@category_children_list categoryId=1]
+					[#list categories as category]
+					  	<dd><a href="${category.path}" title="${category.name}">${category.name}</a></dd>
+					[/#list]
+				[/@category_children_list]
+			</dl>
+			<dl>
+			  	<dt><h4 class="title">联系我们</h4></dt>
+			  	<dd><span class="am-icon-qq am-icon-fw"></span> <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=f48c49cc36c4a55fb75539002a4ea0bfae8657f33a749870afaa5eb05537177f">点击在线咨询</a></dd>
+			  	<dd><span class="am-icon-phone am-icon-fw"></span> <a target="_blank" href="javascript:;">${phone}</a></dd>
+			  	<dd><span class="am-icon-envelope am-icon-fw"></span> <a target="_blank" href="mailto:${email}">${email}</a></dd>
+			</dl>
+		  </div>
+		  <div class="am-u-sm-5">
+		  	<a href="" target="_blank"><img src="${base}/templates/${config.theme}/front/static/images/logo-lg11.png" alt="" /></a>
+		  	<p>我们有着极客的思想，我们有着工匠的精神，我们是一支成熟且富有创造力的团队，我们只做技术不做营销。我们在移动WEB领域技术的探索从未停止，不断的追求、探索、创新才能更好的服务于客户。未来，专注是我们一贯坚持的态度，唯有专业和专注才能在当今社会站稳脚跟。</p>
+		  </div>
+	</div>
+	<div class="copyright">
+		<div class="am-container">
+           <span>Copyright © <a href="${config.siteUrl}">${config.siteName}</a></span> |
+           <span><a href="http://www.miibeian.gov.cn/" target="_blank">${certtext}</a></span>
+           ${statisticsCode}
+       	</div>
+	</div>
+</footer>

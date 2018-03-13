@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>清空缓存</title>
+[#include "/WEB-INF/admin/include/common.html"]
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>清空缓存</h5>
+            </div>
+           <form id="inputForm" action="delete" method="post">
+	            <div class="ibox-content">
+	                <div class="form-horizontal clearfix">
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">缓存数：</label>
+	                        <div class="col-sm-3">
+	                          	${cacheSize}
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">可用内存：</label>
+	                        <div class="col-sm-3">
+	                            [#if maxMemory?? && totalMemory?? && freeMemory??]
+									${(maxMemory - totalMemory + freeMemory)?string("0.##")}MB
+								[#else]
+									-
+								[/#if]
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">缓存文件路径：</label>
+	                        <div class="col-sm-3">
+	                        	${diskStorePath}
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="modal-footer col-sm-3 col-sm-offset-2">
+	                <button type="submit" class="btn btn-w-m btn-primary">确定</button>
+	            </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

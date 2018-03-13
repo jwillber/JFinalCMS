@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>添加表单字段</title>
+[#include "/WEB-INF/admin/include/common.html"]
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>添加表单字段</h5>
+            </div>
+           <form id="inputForm" action="save" method="post">
+           		<input type="hidden" name="formModelId" value="${formModel.id}" />
+	            <div class="ibox-content">
+	                <div class="form-horizontal clearfix">
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">模型名称：</label>
+	                        <div class="col-sm-3">
+	                            ${formModel.name}
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">类型：</label>
+	                        <div class="col-sm-3">
+	                            <select class="form-control" name="type" id="type">
+									<option value="">--请选择字段类别--</option>
+									[#list fieldTypeNames.keySet() as key]
+									 	<option value="${key}">${fieldTypeNames.get(key)}</option>
+									[/#list]
+								</select>
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">别名：</label>
+	                        <div class="col-sm-3">
+	                            <input placeholder="别名" class="form-control" type="text" name="alias">
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">名称：</label>
+	                        <div class="col-sm-3">
+	                            <input placeholder="名称" class="form-control" type="text" name="name">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="form-horizontal clearfix" id="fieldAttributeTable">
+	                </div>
+	                <div class="form-horizontal clearfix">
+	                	<div class="form-group">
+	                        <label class="col-sm-3 control-label">输入提示：</label>
+	                        <div class="col-sm-3">
+	                            <input placeholder="输入提示" class="form-control" type="text" name="prompt">
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">设置：</label>
+	                        <div class="col-sm-3">
+	                            <div class="checkbox">
+	                               <label class="m-r"><input type="checkbox" name="isEnabled" value="true" checked/>启用</label>
+	                               <label class="m-r"><input type="checkbox" name="isAdminShow" value="true"/>后台显示</label>
+	                               <label class="m-r"><input type="checkbox" name="isRequired" value="true"/>必填</label>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">数据校验：</label>
+	                        <div class="col-sm-3">
+	                            <input placeholder="数据校验" class="form-control" type="text" name="pattern" id="pattern">
+	                        </div>
+	                        <div class="col-sm-3">
+                       	 		<select class="form-control" id="commonPattern">
+									<option value="">常用正则</option>
+									[#list modelFieldPatternNames.keySet() as key]
+									 	<option value="${key}">${modelFieldPatternNames.get(key)}</option>
+									[/#list]
+								</select>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="modal-footer col-sm-3 col-sm-offset-2">
+	                <button type="submit" class="btn btn-w-m btn-primary">确定</button>
+	                <button type="button" class="btn btn-w-m btn-default" onclick="history.back(); return false;">取消</button>
+	            </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+$().ready(function() {
+
+	var $inputForm = $("#inputForm");
+	var $type = $("#type");
+	var $fieldAttributeTable = $("#fieldAttributeTable");
+	var $commonPattern = $("#commonPattern");
+	
+	$commonPattern.change(function() {
+		$("#pattern").val($(this).val());
+	});
+	
+	// 字段类别
+	$type.change(function() {
+		var $this = $(this);
+		if ($this.val() == "radio" || $this.val() == "checkbox" || $this.val() == "select") {
+			$fieldAttributeTable.html('<div class="form-group"><label class="col-sm-3 control-label">选项列表：</label><div class="col-sm-3"><textarea name="fieldAttribute.content" class="form-control" style="height: 250px;"></textarea></div></div><div class="form-group"><label class="col-sm-3 control-label">默认选中值:</label><div class="col-sm-3"><input type="text" name="fieldAttribute.defaultValue" class="form-control" value="" /></div></div>');
+		}else if ($this.val() == "input") {
+			$fieldAttributeTable.html('<div class="form-group"><label class="col-sm-3 control-label">默认值：</label><div class="col-sm-3"><input type="text" name="fieldAttribute.defaultValue" class="form-control" value="" /></div></div>');
+		}else if ($this.val() == "textarea" || $this.val() == "editor") {
+			$fieldAttributeTable.html('<div class="form-group"><label class="col-sm-3 control-label">默认值：</label><div class="col-sm-3"><textarea name="fieldAttribute.defaultValue" class="form-control" style="height: 250px;"></textarea></div></div>');
+		}else if ($this.val() == "date") {
+			$fieldAttributeTable.html('<div class="form-group"><label class="col-sm-3 control-label">时间格式：</label><div class="col-sm-3"><input type="text" name="fieldAttribute.format" class="form-control" value="" /></div></div>');
+		}else{
+			$fieldAttributeTable.html('');
+		}
+	});
+	
+	
+	// 表单验证
+	$inputForm.validate({
+		rules: {
+			type: "required",
+			alias: "required",
+			name: "required",
+			isEnabled: "required"
+		}
+	});
+
+});
+</script>

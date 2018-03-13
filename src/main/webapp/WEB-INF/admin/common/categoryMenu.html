@@ -1,0 +1,9 @@
+[#list categoryTree as category]
+	<li style="margin-left: ${category.grade * 20}px;">
+		[#if category.type=="list"]
+			<a href="../content/list?categoryId=${category.id}" target="iframe">${category.name}</a>
+		[#else]
+			<a href="../category/edit?id=${category.id}" target="iframe">${category.name}</a>
+		[/#if]
+	</li>
+[/#list]

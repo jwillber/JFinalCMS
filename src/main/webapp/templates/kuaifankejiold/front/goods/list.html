@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>商品列表-${siteName}</title>
+    <meta name="keywords" content="快帆工作室,KuaiFanKeJi,互联网建站平台,网站建设,网站开发,微信公众号开发,微信小程序开发,微信APP开发,webapp开发">
+    <meta name="description" content="快帆工作室,KuaiFanKeJi,互联网建站平台,网站建设,网站开发,微信公众号开发,微信小程序开发,微信APP开发,webapp开发,省时省力省心,标准化制作流程,让您建站无忧">
+    <link rel="stylesheet" type="text/css" href="${base}/templates/${config.theme}/front/front/static/css/base.min.css">
+    <link rel="stylesheet" type="text/css" href="${base}/templates/${config.theme}/front/front/static/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="${base}/templates/${config.theme}/front/front/static/css/home.css">
+</head>
+<body>
+<!-- header start -->
+[#include "/templates/${config.theme}/front/front/include/header.html" /]
+<!-- header end -->
+<div class="inbox main layout-margin unstart">
+    <div class="inbox bread-nav"><span>当前位置：</span><a href="javascript:;">商品列表</a> > </div>
+    <div class="fn-clear rmb-main-top" id="unMainTop"></div>
+    <div class="container">
+        <div class="content">
+            <div class="un-content-top" id="unContentTop"></div>
+			<div class="class-content">&nbsp;商品列表。</div>	
+			<div class="view-data">
+	            <ul class="fn-cf ui-cols-4 flip-list">
+	            	 [#list page.list as goods]
+			                <li class="col flip-3d">
+			                    <a href="javascript:;" class="inner" target="_blank">
+			                        <img src="${goods.image}">
+			                        <div class="info">
+			                            <p class="h">${goods.name}</p>
+			                            <p class="fn-vhide ename">${goods.productCategory.name}</p>
+			                            <p><span class="btn-more">查看详细</span></p>
+			                        </div>
+			                        <div class="mask"></div>
+			                    </a>
+			                    <p class="fn-hide des">${goods.name}</p>
+			                </li>
+	                	[/#list]
+	            </ul>
+	        </div>
+      	</div>
+     </div>
+  </div>
+ </body>
+</html>

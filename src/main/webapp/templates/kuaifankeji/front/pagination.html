@@ -1,0 +1,21 @@
+<div class="pageBtn">
+[#if totalPages > 1]    
+	[#if hasPrevious]
+		<a href="${currentCategory.getListPath(previousPageNumber)}" class="page_prev">上一页</a>
+	[#else]
+		<a href="javascript:;" class="page_prev on">上一页</a>
+	[/#if]
+	[#list segment as segmentPageNumber]
+		[#if segmentPageNumber != pageNumber]
+			<a href="${currentCategory.getListPath(segmentPageNumber)}">${segmentPageNumber}</a>
+		[#else]
+			<a href="javascript:;" class="page_num on">${segmentPageNumber}</a>
+		[/#if]
+	[/#list]
+	[#if hasNext]
+		<a href="${currentCategory.getListPath(nextPageNumber)}" class="page_next">下一页</a>
+	[#else]
+		<a href="javascript:;" class="page_next on">下一页</a>
+	[/#if]
+[/#if] 
+</div>

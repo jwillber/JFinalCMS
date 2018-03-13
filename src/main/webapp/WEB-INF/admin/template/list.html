@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>模板管理</title>
+[#include "/WEB-INF/admin/include/common.html"]
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>模板管理</h5>
+            </div>
+           	<form id="listForm" action="list" method="get">
+	            <div class="ibox-content">
+	                <!-- 搜索 start -->
+	                <!-- 搜索 end -->
+	                <!-- 列表 start -->
+	                <div class="form-horizontal clear">
+	                    <div class="form-group">
+	                        <div class="col-sm-8">
+	                            <a href="javascript:;" class="btn btn-primary" id="refreshButton"><i class="fa fa-refresh"></i> 刷新</a>
+	                            [#if directory??]
+									<a class="btn btn-primary" href="list?directory=${directory?substring(0,directory?last_index_of(','))}"><i class="fa fa-arrow-up"></i>上级目录</a>
+								[/#if]
+	                        </div>
+	                    </div>
+	                    <div class="table-responsive">
+	                        <table class="table table-bordered" id="listTable">
+	                            <thead>
+	                                <tr>
+	                                    <th>名称</th>
+	                                    <th>类型</th>
+	                                    <th>大小</th>
+	                                    <th>修改日期</th>
+	                                    <th>操作</th>
+	                                </tr>
+	                            </thead>
+	                            <tbody>
+	                            	[#list templateFiles as templateFile]
+	                                <tr>
+	                                    <td>
+	                                    	[#if templateFile.isDirectory]
+	                                    		<a href="list?directory=${directory},${templateFile.name}">${templateFile.name}</a>
+	                                    	[#else]
+	                                    		${templateFile.name}
+	                                    	[/#if]
+	                                    </td>
+	                                    <td>
+	                                    	[#if templateFile.isDirectory]
+	                                    		文件夹
+	                                    	[#else]
+	                                    		${templateFile.type}
+	                                    	[/#if]
+	                                    </td>
+	                                    <td>${templateFile.size}</td>
+	                                    <td>${templateFile.modifyDate}</td>
+	                                    <td>
+	                                    	[#if !templateFile.isDirectory]
+	                                    		[#if templateFile.type=="js" || templateFile.type=="html" || templateFile.type=="css"]
+			                                        <a href="edit?fileName=${templateFile.name}&directory=${directory}">[编辑]</a>
+			                                    [#else]
+			                                    	<a href="view?fileName=${templateFile.name}&directory=${directory}" target="_blank">[查看]</a>
+	                                    		[/#if]
+	                                    	[/#if]
+	                                    </td>
+	                                </tr>
+	                                [/#list]
+	                            </tbody>
+	                        </table>
+	                    </div>
+	                </div>
+	                <!-- 列表 end -->
+	            </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>管理中心首页</title>
+[#include "/WEB-INF/admin/include/common.html"]
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>管理中心首页</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="form-horizontal clearfix">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">系统名称:</label>
+                        <div class="col-sm-2 control-label">
+                           	<p class="text-left">快帆工作室CMS系统</p>
+                        </div>
+                        <label class="col-sm-3 control-label">系统版本:</label>
+                        <div class="col-sm-2 control-label">
+                            <p class="text-left">1.0</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">官方网站:</label>
+                        <div class="col-sm-2 control-label">
+                            <p class="text-left">http://www.kuaifankeji.com</p>
+                        </div>
+                        <label class="col-sm-3 control-label">官方论坛:</label>
+                        <div class="col-sm-2 control-label">
+                            <p class="text-left">http://www.kuaifankeji.com</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">JAVA版本:</label>
+                        <div class="col-sm-2 control-label">
+                            <p class="text-left">${javaVersion}</p>
+                        </div>
+                        <label class="col-sm-3 control-label">JAVA路径:</label>
+                        <div class="col-sm-2 control-label">
+                            <p class="text-left">${javaHome}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">操作系统名称:</label>
+                        <div class="col-sm-2 control-label">
+                            <p class="text-left">${osName}</p>
+                        </div>
+                        <label class="col-sm-3 control-label">操作系统构架:</label>
+                        <div class="col-sm-2 control-label">
+                            <p class="text-left">${osArch}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Server信息:</label>
+                        <div class="col-sm-2 control-label">
+                            <p class="text-left">${abbreviate(serverInfo, 30, "...")}</p>
+                        </div>
+                        <label class="col-sm-3 control-label">Servlet版本:</label>
+                        <div class="col-sm-2 control-label">
+                            <p class="text-left">${servletVersion}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

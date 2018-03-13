@@ -1,0 +1,36 @@
+	<header class="header">
+		<div class="navbar">
+<!-- 			<h1 class="logo"><a href="${base}/" >${config.siteName}</a></h1> -->
+			<ul class="nav">
+      			<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home"><a href="${base}/">首页</a></li>
+				<!-- <li class='menu-item menu-item-type-taxonomy menu-item-object-category current-menu-ancestor '><a href="/front/">前端开发</a>
+					<ul class="sub-menu">
+						<li class="menu-item menu-item-type-taxonomy menu-item-object-category"><a href="/front/htmlcss/">HTML/CSS</a></li>
+						<li class="menu-item menu-item-type-taxonomy menu-item-object-category"><a href="/front/javascript/">javascript</a></li>
+					</ul>
+ 				</li> -->
+ 				[@category_root_list isMenu="true"]
+                    [#list categories as category]
+	 				<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-menu-ancestor"><a href="${category.path}">${category.name}</a></li>
+                    [/#list]
+                [/@category_root_list]
+			</ul>
+			<!-- <div class="menu pull-right">
+            	<form  name="formsearch" class="dropdown search-form" action="${base}/article/search.do">
+					<input class="search-input" name="keyword" type="text" placeholder="输入关键字搜索" autofocus="" x-webkit-speech="">
+               		<input class="btn btn-success search-submit" type="submit" value="搜索">
+					<ul class="dropdown-menu search-suggest"></ul>
+				</form>
+				<div class="btn-group pull-left">
+					<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">关注 <i class="caret"></i></button>
+					<ul class="dropdown-menu pull-right">
+						<li><a href="http://t.qq.com" target="_blank">腾讯微博</a></li>					
+						<li><a href="http://weibo.com" target="_blank">新浪微博</a></li>
+					</ul>
+				</div>
+			</div> -->
+		</div>
+		<div class="speedbar">
+			<div class="toptip"><strong class="text-success">最新消息：</strong>${config.siteName}上线啦</div>
+		</div>
+	</header>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>添加友情链接</title>
+[#include "/WEB-INF/admin/include/common.html"]
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>添加友情链接</h5>
+            </div>
+           <form id="inputForm" action="save" method="post">
+	            <div class="ibox-content">
+	                <div class="form-horizontal clearfix">
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">名称：</label>
+	                        <div class="col-sm-3">
+	                            <input placeholder="名称" class="form-control" type="text" name="name">
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">类型：</label>
+	                        <div class="col-sm-3">
+	                           <select class="form-control" id="type" name="type">
+	                               [#list friendLinkTypeNames.keySet() as key]
+									 	<option value="${key}">${friendLinkTypeNames.get(key)}</option>
+									[/#list]
+	                            </select>
+	                        </div>
+	                    </div>
+	                    <div class="form-group" style="display: none;">
+	                        <label class="col-sm-3 control-label">logo：</label>
+	                        <div class="col-sm-3">
+	                            <input type="text" id="logo" name="logo" class="form-control" />
+	                        </div>
+	                        <div class="col-sm-3">
+								<a href="javascript:;" id="filePicker" class="btn btn-primary">选择文件</a>
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">链接地址：</label>
+	                        <div class="col-sm-3">
+	                            <input placeholder="链接地址" class="form-control" type="text" name="url">
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">排序：</label>
+	                        <div class="col-sm-3">
+	                            <input placeholder="排序" class="form-control" type="text" name="sort">
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="modal-footer col-sm-3 col-sm-offset-2">
+	                <button type="submit" class="btn btn-w-m btn-primary">确定</button>
+	                <button type="button" class="btn btn-w-m btn-default" onclick="history.back(); return false;">取消</button>
+	            </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+$().ready(function() {
+
+	var $inputForm = $("#inputForm");
+	var $type = $("#type");
+	var $logo = $("#logo");
+	var $filePicker = $("#filePicker");
+	
+	
+	
+	$filePicker.uploader();
+	
+	$type.change(function() {
+		if ($(this).val() == "text") {
+			$logo.prop("disabled", true).closest(".form-group").hide();
+		} else {
+			$logo.prop("disabled", false).closest(".form-group").show();
+		}
+	});
+	
+	// 表单验证
+	$inputForm.validate({
+		rules: {
+			name: "required",
+			logo: {
+				required: true,
+				pattern: /^(http:\/\/|https:\/\/|\/).*$/i
+			},
+			url: {
+				required: true,
+				pattern: /^(http:\/\/|https:\/\/|ftp:\/\/|mailto:|\/|#).*$/i
+			},
+			sort: "digits"
+		}
+	});
+
+});
+</script>

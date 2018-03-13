@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>账号设置</title>
+[#include "/WEB-INF/admin/include/common.html"]
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>账号设置</h5>
+            </div>
+           <form id="inputForm" action="update" method="post">
+	            <div class="ibox-content">
+	                <div class="form-horizontal clearfix">
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">用户名：</label>
+	                        <div class="col-sm-3">
+	                            ${admin.username}
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">姓名：</label>
+	                        <div class="col-sm-3">
+	                            ${admin.name}
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">当前密码：</label>
+	                        <div class="col-sm-3">
+	                            <input placeholder="当前密码" class="form-control" type="password" name="currentPassword" autocomplete="off">
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">新密码：</label>
+	                        <div class="col-sm-3">
+	                            <input placeholder="新密码" id="password" class="form-control" type="password" name="password" autocomplete="off">
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-3 control-label">确认新密码：</label>
+	                        <div class="col-sm-3">
+	                            <input placeholder="确认新密码" class="form-control" type="password" name="rePassword" autocomplete="off">
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="modal-footer col-sm-3 col-sm-offset-2">
+	                <button type="submit" class="btn btn-w-m btn-primary">确定</button>
+	                <button type="button" class="btn btn-w-m btn-default" onclick="history.back(); return false;">取消</button>
+	            </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+$().ready(function() {
+
+	var $inputForm = $("#inputForm");
+	
+	
+	
+	$.validator.addMethod("requiredTo", 
+		function(value, element, param) {
+			var parameterValue = $(param).val();
+			if ($.trim(parameterValue) == "" || ($.trim(parameterValue) != "" && $.trim(value) != "")) {
+				return true;
+			} else {
+				return false;
+			}
+		},
+		"必填"
+	);
+	
+	// 表单验证
+	$inputForm.validate({
+		rules: {
+			currentPassword: {
+				remote: {
+					url: "checkCurrentPassword",
+					cache: false
+				}
+			},
+			password: {
+				minlength: 4
+			},
+			rePassword: {
+				equalTo: "#password"
+			},
+			email: {
+				required: true,
+				email: true
+			}
+		}
+	});
+
+});
+</script>
