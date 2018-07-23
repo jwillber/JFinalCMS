@@ -24,6 +24,9 @@ MVC：JFinal 3.3
 
 3.演示地址:[http://www.kuaifankeji.com](http://www.kuaifankeji.com)
 
+新版本演示地址:[http://www.kuaifankeji.com/program.html](http://www.kuaifankeji.com/program.html)
+新版本采用enjoy模板,PC,移动端静态化一键生成,更加强大,更加极速。
+
 4.交流群:575535321
 
 5.部分功能截图:
