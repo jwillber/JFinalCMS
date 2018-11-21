@@ -22,6 +22,11 @@ MVC：JFinal 3.3
 
 （5）系统管理(角色、管理员、存储插件、地区、设置、模板、清除缓存、生成静态、生成sitemap)
 
+
+
+ **文档说明:[http://www.kuaifankeji.com/doc/html/index.html](http://www.kuaifankeji.com/doc/html/index.html)** 
+
+
 3.演示地址:[http://www.kuaifankeji.com](http://www.kuaifankeji.com)
 
 新版本演示地址:[http://www.kuaifankeji.com/program.html](http://www.kuaifankeji.com/program.html)
