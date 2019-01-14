@@ -35,8 +35,31 @@ MVC：JFinal 3.5
 
 5.后台功能截图:
 
-![输入图片说明](https://gitee.com/uploads/images/2017/1219/151905_8fb1c310_623319.png "14439_20171218214553.png")
-![输入图片说明](https://gitee.com/uploads/images/2017/1219/151920_ecb6e567_623319.png "14439_20171218212610.png")
-![输入图片说明](https://gitee.com/uploads/images/2017/1219/151929_6e6d23c3_623319.png "14439_20171218212622.png")
-![输入图片说明](https://gitee.com/uploads/images/2017/1219/151937_7e4911b1_623319.png "14439_20171218212638.png")
-![输入图片说明](https://gitee.com/uploads/images/2017/1219/151945_0507a333_623319.png "14439_20171218214325.png")
+模型管理
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160237_51a1e4f2_623319.png "屏幕截图.png")
+栏目管理
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160300_80cb28db_623319.png "屏幕截图.png")
+内容管理
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160310_70a74f29_623319.png "屏幕截图.png")
+表单管理
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160318_460d88a6_623319.png "屏幕截图.png")
+自定义表管理
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160323_ab9cde6b_623319.png "屏幕截图.png")
+广告
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160328_0b45aa58_623319.png "屏幕截图.png")
+广告位
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160334_39c12aae_623319.png "屏幕截图.png")
+友情链接
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160339_f43f7132_623319.png "屏幕截图.png")
+管理员
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160344_d8fb0bb6_623319.png "屏幕截图.png")
+站点管理
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160349_a33fb55f_623319.png "屏幕截图.png")
+系统配置
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160354_e7989ff1_623319.png "屏幕截图.png")
+模板
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160400_930db973_623319.png "屏幕截图.png")
+清除缓存
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160406_a0882f3d_623319.png "屏幕截图.png")
+数据库
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160431_3206872d_623319.png "屏幕截图.png")
