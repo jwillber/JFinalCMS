@@ -4,40 +4,27 @@ JFinal 万能CMS系统，极速开发，动态添加字段，自定义标签，�
 1.技术框架:
 
 MVC：JFinal 3.5
-
 页面:enjoy
-
 缓存:ehcache
-
 数据库:Mysql
 
 2.功能有：
 
 （1）模型管理
-
-（1）栏目管理
-
-（2）内容管理(动态生成)
-
-（3）表单管理(动态生成)
-
-（4）营销管理(广告、广告位、友情链接)
-
-（5）系统管理(管理员、站点管理、清除缓存、生成静态、生成sitemap)
-
-
+（2）栏目管理
+（3）内容管理(动态生成)
+（4）表单管理(动态生成)
+（5）自定义表管理(动态生成)
+（6）营销管理(广告、广告位、友情链接)
+（7）系统管理(管理员、站点管理、系统配置、模板、清除缓存、数据库)
 
  **文档说明:[http://www.kuaifankeji.com/doc/html/index.html](http://www.kuaifankeji.com/doc/html/index.html)** 
 
-
 3.演示地址:[http://www.kuaifankeji.com](http://www.kuaifankeji.com)
-
-新版本演示地址:[http://www.kuaifankeji.com/program.html](http://www.kuaifankeji.com/program.html)
-新版本采用enjoy模板,PC,移动端静态化一键生成,更加强大,更加极速。
 
 4.交流群:575535321
 
-5.部分功能截图:
+5.后台功能截图:
 
 ![输入图片说明](https://gitee.com/uploads/images/2017/1219/151905_8fb1c310_623319.png "14439_20171218214553.png")
 ![输入图片说明](https://gitee.com/uploads/images/2017/1219/151920_ecb6e567_623319.png "14439_20171218212610.png")
