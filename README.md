@@ -31,7 +31,7 @@ MVC：JFinal 3.5
 
 3.演示地址:[http://www.kuaifankeji.com](http://www.kuaifankeji.com)
 
-4.交流群:575535321
+4.联系QQ：644080923 交流群:575535321
 
 5.后台功能截图:
 
