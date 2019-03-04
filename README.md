@@ -27,9 +27,9 @@ MVC：JFinal 3.5
 
 （7）系统管理(管理员、站点管理、系统配置、模板、清除缓存、数据库)
 
- **文档说明:[http://www.kuaifankeji.com/doc/html/index.html](http://www.kuaifankeji.com/doc/html/index.html)** 
+ **文档说明:[https://www.kancloud.cn/heyewei/jrecms/910309](https://www.kancloud.cn/heyewei/jrecms/910309)** 
 
-3.演示地址:[http://www.kuaifankeji.com](http://www.kuaifankeji.com)
+3.演示地址:[http://www.jrecms.com](http://www.jrecms.com)
 
 4.联系QQ：644080923 交流群:575535321
 
