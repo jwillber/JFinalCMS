@@ -3,7 +3,7 @@ JFinal 万能CMS系统，极速开发，动态添加字段，自定义标签，�
 
 1.技术框架:
 
-MVC：JFinal 3.5
+MVC：JFinal 3.6
 
 页面:enjoy
 
@@ -29,7 +29,9 @@ MVC：JFinal 3.5
 
  **文档说明:[https://www.kancloud.cn/heyewei/jrecms/910309](https://www.kancloud.cn/heyewei/jrecms/910309)** 
 
-3.演示地址:[http://www.jrecms.com](http://www.jrecms.com)
+3.官网地址:[http://www.jrecms.com](http://www.jrecms.com)
+
+体验地址: 前台:http://cms.jrecms.com 后台:http://cms.jrecms.com/admin/login 账号:admin 123456
 
 4.联系QQ：644080923 交流群:575535321
 
