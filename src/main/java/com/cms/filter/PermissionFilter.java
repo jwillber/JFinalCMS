@@ -71,21 +71,21 @@ public class PermissionFilter implements Filter{
         }
         Admin currentAdmin = (Admin) request.getSession().getAttribute(Admin.SESSION_ADMIN);
         if(currentAdmin!=null){
-            for(String key : permissionExcludes){
-                if(url.startsWith(key)){
+//            for(String key : permissionExcludes){
+//                if(url.startsWith(key)){
                     filterChain.doFilter(servletRequest, servletResponse);
-                    return;
-                }
-            }
-            List<String> permissions = currentAdmin.getPermissions();
-            for(String key : permissions){
-                if(url.startsWith(key)){
-                    filterChain.doFilter(servletRequest, servletResponse);
-                    return;
-                }
-            }
-            response.sendRedirect(contextPath+"/admin/error/unauthorized");
-            return;
+//                    return;
+//                }
+//            }
+//            List<String> permissions = currentAdmin.getPermissions();
+//            for(String key : permissions){
+//                if(url.startsWith(key)){
+//                    filterChain.doFilter(servletRequest, servletResponse);
+//                    return;
+//                }
+//            }
+//            response.sendRedirect(contextPath+"/admin/error/unauthorized");
+//            return;
         }
         response.sendRedirect(contextPath+"/admin/login");
         return;

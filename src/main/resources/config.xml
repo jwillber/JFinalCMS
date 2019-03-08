@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kuaifan>
-	<config name="siteName" value="快帆工作室" />
-	<config name="siteUrl" value="http://www.kuaifankeji.com" />
+	<config name="siteName" value="JreCms" />
+	<config name="siteUrl" value="http://www.jrecms.com" />
 	<config name="logo" value="/upload/image/logo.png" />
-	<config name="title" value="网站建设,网站开发,微信公众号开发,微信小程序开发,微信APP开发,webapp开发" />
-	<config name="keywords" value="快帆工作室,KuaiFanKeJi,互联网建站平台,网站建设,网站开发,微信公众号开发,微信小程序开发,微信APP开发,webapp开发" />
-	<config name="description" value="快帆工作室,KuaiFanKeJi,互联网建站平台,网站建设,网站开发,微信公众号开发,微信小程序开发,微信APP开发,webapp开发,省时省力省心,标准化制作流程,让您建站无忧" />
-	<config name="theme" value="kuaifankeji" />
+	<config name="title" value="JreCms,JavaCms,Java内容管理系统,网站建设,网站开发,微信公众号开发,微信小程序开发,微信APP开发,webapp开发" />
+	<config name="keywords" value="JreCms,JavaCms,Java内容管理系统,互联网建站平台,网站建设,网站开发,微信公众号开发,微信小程序开发,微信APP开发,webapp开发" />
+	<config name="description" value="JreCms,JavaCms,Java内容管理系统,互联网建站平台,网站建设,网站开发,微信公众号开发,微信小程序开发,微信APP开发,webapp开发,省时省力省心,标准化制作流程,让您建站无忧" />
+	<config name="theme" value="default" />
 	<config name="isWatermarkEnabled" value="false" />
 	<config name="watermarkAlpha" value="50" />
 	<config name="watermarkImage" value="/resources/watermark.png" />
