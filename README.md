@@ -27,7 +27,7 @@ MVC：JFinal 3.6
 
 （7）系统管理(管理员、站点管理、系统配置、模板、清除缓存、数据库)
 
- **文档说明:[https://www.kancloud.cn/heyewei/jrecms/910309](https://www.kancloud.cn/heyewei/jrecms/910309)** 
+ **文档说明:[http://www.jrecms.com/category/48](http://www.jrecms.com/category/48)** 
 
 3.官网地址:[http://www.jrecms.com](http://www.jrecms.com)
 
