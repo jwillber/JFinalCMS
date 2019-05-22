@@ -43,6 +43,7 @@ JFinalCMS，极速开发，动态添加字段，自定义标签，动态创建�
 #### 帮助文档
 
 1. 文档说明：[http://www.jrecms.com/category/48](http://www.jrecms.com/category/48)
+2. 新版本获取:[http://www.jrecms.com/category/46](http://www.jrecms.com/category/46)
 
 #### 案例
 
