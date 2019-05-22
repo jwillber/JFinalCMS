@@ -44,6 +44,10 @@ JFinalCMS，极速开发，动态添加字段，自定义标签，动态创建�
 
 1. 文档说明：[http://www.jrecms.com/category/48](http://www.jrecms.com/category/48)
 
+#### 案例
+
+![案例](https://images.gitee.com/uploads/images/2019/0522/142523_9cedc51f_623319.png "屏幕截图.png")
+
 #### 后台功能截图
 
 模型管理
