@@ -51,31 +51,18 @@ JFinalCMS，极速开发，动态添加字段，自定义标签，动态创建�
 
 #### 后台功能截图
 
-模型管理
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160237_51a1e4f2_623319.png "屏幕截图.png")
-栏目管理
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160300_80cb28db_623319.png "屏幕截图.png")
-内容管理
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160310_70a74f29_623319.png "屏幕截图.png")
-表单管理
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160318_460d88a6_623319.png "屏幕截图.png")
-自定义表管理
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160323_ab9cde6b_623319.png "屏幕截图.png")
-广告
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160328_0b45aa58_623319.png "屏幕截图.png")
-广告位
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160334_39c12aae_623319.png "屏幕截图.png")
-友情链接
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160339_f43f7132_623319.png "屏幕截图.png")
-管理员
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160344_d8fb0bb6_623319.png "屏幕截图.png")
-站点管理
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160349_a33fb55f_623319.png "屏幕截图.png")
-系统配置
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160354_e7989ff1_623319.png "屏幕截图.png")
-模板
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160400_930db973_623319.png "屏幕截图.png")
-清除缓存
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160406_a0882f3d_623319.png "屏幕截图.png")
-数据库
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0114/160431_3206872d_623319.png "屏幕截图.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0102/192142_2da79cc9_623319.png "屏幕截图.png")
+
+####  捐献
+
+1. 捐献二维码<br/>
+![输入图片说明](https://images.gitee.com/uploads/images/2019/1214/135512_cb408dd6_623319.png "shoukuan.png")
+2. 联系：  微信：heyewei123   QQ:644080923
+3. 默认赠送4套模板
+（1）PC中文<br/>
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0102/192441_bf5da843_623319.png "屏幕截图.png")
+（2）PC英文<br/>
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0102/193554_f2f19495_623319.png "屏幕截图.png")
+（3）模板1<br/>
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0102/193645_0895b3a7_623319.png "屏幕截图.png")
+（4）小程序<br/>
