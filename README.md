@@ -32,5 +32,5 @@ JFinalCMS，极速开发，动态添加字段，自定义标签，动态创建�
 1. 联系QQ：644080923
 2. 联系微信:heyewei123
 2. 官网地址:[http://www.jrecms.com](http://www.jrecms.com)
-3. 体验地址: 前台:http://cms.jrecms.com 后台:http://cms.jrecms.com/admin/login 账号:admin 123456
+3. 体验地址: 前台:http://cms.jrecms.com 后台:http://cms.jrecms.com/admin/login 账号:read 123456
 
